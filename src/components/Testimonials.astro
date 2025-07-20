@@ -1,0 +1,988 @@
+---
+// Testimonials - Nivel 5: Bestiary de Testimonios con carrusel estilo bestiario e i18n
+import { t } from '../i18n/index.ts';
+---
+
+<section id="testimonials" class="min-h-screen py-20 relative overflow-hidden bg-bg-dark">
+  <!-- Bestiary Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="starfield"></div>
+    <div class="pixel-grid"></div>
+    <div class="bestiary-bg"></div>
+    <div class="floating-pages"></div>
+    <div class="ink-spots"></div>
+    <div class="geometric-bg opacity-10"></div>
+  </div>
+
+  <!-- Section Header -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16 fade-in-up">
+      <div class="section-subtitle font-code text-sm text-pixel-cyan mb-4">
+        <span class="blinking-cursor animate-pixel-blink">►</span>
+        <span data-lang="en">{t('testimonials.subtitle', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('testimonials.subtitle', 'es')}</span>
+      </div>
+      <h2 class="section-title font-heading text-4xl md:text-6xl font-bold text-text-primary mb-6">
+        <span data-lang="en">{t('testimonials.title', 'en')} <span class="text-pixel-purple text-glow-yellow">{t('testimonials.title', 'en').split(' ')[2] || 'GRIMOIRE'}</span></span>
+        <span data-lang="es" style="display: none;">{t('testimonials.title', 'es')} <span class="text-pixel-purple text-glow-yellow">{t('testimonials.title', 'es').split(' ')[2] || 'GRIMOIRE'}</span></span>
+      </h2>
+      <div class="section-description font-code text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+        <span data-lang="en">{t('testimonials.description', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('testimonials.description', 'es')}</span>
+      </div>
+    </div>
+
+    <!-- Bestiary Book Container -->
+    <div class="bestiary-container max-w-6xl mx-auto">
+      <!-- Book Cover -->
+      <div class="book-cover scale-in mb-8">
+        <div class="cover-content pixel-panel p-8">
+          <div class="book-icon text-6xl mb-4">📖</div>
+          <div class="book-title font-heading text-3xl font-bold text-gold mb-2">
+            {t('testimonials.book.title', "en")}
+          </div>
+          <div class="book-subtitle font-code text-base text-text-secondary mb-4">
+            {t('testimonials.book.subtitle', "en")}
+          </div>
+          <div class="book-stats font-pixel text-pixel-xs text-secondary-yellow">
+            50+ COMPLETED QUESTS • 95% SUCCESS RATE
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Pages Grid -->
+      <div class="testimonials-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.1s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-pixel-cyan"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    Carlos M.
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    FRONTEND KNIGHT
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "The mentoring quest with Gentleman transformed my coding approach completely. From struggling with architecture to building scalable applications."
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  ⚔️ Frontend Architecture Mastery<br>
+                  🎯 3 months mentoring<br>
+                  🏆 Level: Junior → Senior
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.2s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-pixel-green"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    Ana R.
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    FULLSTACK MAGE
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "Incredible journey! The code reviews and architectural guidance helped me land my dream job. Gentleman's teaching style is unique and effective."
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  🏗️ Code Review & Architecture<br>
+                  🎯 6 months program<br>
+                  🏆 Achievement: Dream Job Unlocked
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.3s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-pixel-purple"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    TechCorp Team
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    ENTERPRISE GUILD
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "Our team's productivity increased by 40% after Gentleman's workshop series. The architectural audit saved us months of technical debt."
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  🏰 Team Workshop Series<br>
+                  🎯 3-month transformation<br>
+                  🏆 +40% Productivity Boost
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.4s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-pixel-orange"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    Miguel S.
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    BACKEND WARRIOR
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "The scalability patterns and microservices architecture knowledge I gained was game-changing. Now I lead the backend team with confidence."
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  ⚙️ Microservices Mastery<br>
+                  🎯 4 months intensive<br>
+                  🏆 Promoted to Team Lead
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.5s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-primary-genie"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    Sofia L.
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    DEVOPS PALADIN
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "From deployment nightmares to CI/CD mastery. Gentleman's DevOps guidance transformed our entire deployment pipeline. Absolutely recommended!"
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  🚀 CI/CD Pipeline Mastery<br>
+                  🎯 2 months transformation<br>
+                  🏆 Zero-downtime deployments
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="testimonial-page slide-in-left" style="animation-delay: 0.6s;">
+          <div class="page-content pixel-panel p-6">
+            <div class="testimonial-header mb-4">
+              <div class="adventurer-info flex items-center gap-3 mb-3">
+                <div class="adventurer-avatar">
+                  <div class="avatar-sprite bg-pixel-red"></div>
+                </div>
+                <div class="adventurer-details">
+                  <div class="adventurer-name font-heading text-lg font-bold text-text-primary">
+                    StartupCo
+                  </div>
+                  <div class="adventurer-class font-pixel text-pixel-xs text-secondary-yellow">
+                    STARTUP GUILD
+                  </div>
+                </div>
+              </div>
+              <div class="quest-rating flex gap-1">
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+                <span class="star text-gold">★</span>
+              </div>
+            </div>
+
+            <div class="testimonial-content">
+              <div class="testimonial-text font-code text-sm text-text-secondary mb-4">
+                "Our startup scaled from MVP to production with Gentleman's architectural guidance. The scalability foundations saved us countless refactoring hours."
+              </div>
+              <div class="quest-completion pixel-panel p-3">
+                <div class="completion-title font-pixel text-pixel-xs text-pixel-green mb-2">
+                  QUEST COMPLETED:
+                </div>
+                <div class="completion-details font-code text-xs text-text-secondary">
+                  🚀 MVP to Production Scale<br>
+                  🎯 6 months guidance<br>
+                  🏆 Successful Product Launch
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Stats Panel -->
+      <div class="success-stats mt-12 fade-in-up">
+        <div class="stats-panel pixel-panel p-8">
+          <div class="stats-title font-heading text-2xl font-bold text-text-primary mb-6 text-center">
+            <span class="text-gold">🏆</span> {t('testimonials.stats.title', "en")}
+          </div>
+
+          <div class="stats-grid grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="stat-item">
+              <div class="stat-value font-heading text-3xl font-bold text-gold mb-2">50+</div>
+              <div class="stat-label font-code text-sm text-text-secondary">Completed Quests</div>
+              <div class="stat-icon mt-2">⚔️</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-value font-heading text-3xl font-bold text-pixel-green mb-2">95%</div>
+              <div class="stat-label font-code text-sm text-text-secondary">Success Rate</div>
+              <div class="stat-icon mt-2">✅</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-value font-heading text-3xl font-bold text-pixel-cyan mb-2">40%</div>
+              <div class="stat-label font-code text-sm text-text-secondary">Avg. Productivity Boost</div>
+              <div class="stat-icon mt-2">📈</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-value font-heading text-3xl font-bold text-primary-genie mb-2">10+</div>
+              <div class="stat-label font-code text-sm text-text-secondary">Years Experience</div>
+              <div class="stat-icon mt-2">🎖️</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="testimonials-cta text-center mt-12 fade-in-up">
+        <div class="cta-content max-w-2xl mx-auto">
+          <div class="cta-title font-heading text-2xl font-bold text-text-primary mb-4">
+            Ready to Add Your Success Story?
+          </div>
+          <div class="cta-subtitle font-code text-base text-text-secondary mb-6">
+            Join the ranks of successful developers who've leveled up their careers
+          </div>
+          <button class="btn-pixel-main" onclick="startYourQuest()">
+            <span class="btn-icon">🚀</span>
+            <span class="btn-text">START YOUR QUEST</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === BESTIARY BACKGROUND === */
+  .bestiary-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 3px, transparent 3px),
+      radial-gradient(circle at 80% 70%, rgba(160, 82, 45, 0.1) 2px, transparent 2px),
+      linear-gradient(45deg, transparent 48%, rgba(139, 69, 19, 0.05) 50%, transparent 52%);
+    background-size: 120px 120px, 150px 150px, 80px 80px;
+    animation: parchmentFloat 25s ease-in-out infinite;
+  }
+
+  @keyframes parchmentFloat {
+    0%, 100% { background-position: 0 0, 0 0, 0 0; }
+    50% { background-position: 60px 60px, -75px -75px, 40px 40px; }
+  }
+
+  .floating-pages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.05) 50%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+    background-size: 200px 200px;
+    animation: pagesWave 20s ease-in-out infinite;
+  }
+
+  @keyframes pagesWave {
+    0%, 100% { background-position: 0 0, 0 0; }
+    50% { background-position: 100px 100px, -100px -100px; }
+  }
+
+  .ink-spots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(ellipse at 30% 20%, rgba(75, 0, 130, 0.1) 8px, transparent 8px),
+      radial-gradient(ellipse at 70% 80%, rgba(75, 0, 130, 0.08) 6px, transparent 6px);
+    background-size: 300px 300px;
+    animation: inkSpread 15s ease-in-out infinite;
+  }
+
+  @keyframes inkSpread {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* === BOOK COVER === */
+  .book-cover {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cover-content {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 69, 19, 0.2) 0%,
+      rgba(22, 33, 62, 0.9) 50%,
+      rgba(75, 0, 130, 0.2) 100%
+    );
+    border: 3px solid var(--gold);
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .cover-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cover-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-genie), transparent);
+  }
+
+  .book-icon {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+    animation: bookFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes bookFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+
+  /* === TESTIMONIALS GRID === */
+  .testimonials-grid {
+    gap: 2rem;
+  }
+
+  .testimonial-page {
+    position: relative;
+  }
+
+  .page-content {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 46, 0.9) 0%,
+      rgba(22, 33, 62, 0.9) 50%,
+      rgba(16, 33, 78, 0.85) 100%
+    );
+    border: 2px solid var(--pixel-border);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .page-content:hover {
+    transform: translateY(-4px);
+    border-color: var(--pixel-purple);
+    box-shadow:
+      0 0 30px rgba(75, 0, 130, 0.4),
+      0 8px 32px rgba(75, 0, 130, 0.2),
+      inset 2px 2px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .page-content:hover::before {
+    left: 100%;
+  }
+
+  /* === ADVENTURER INFO === */
+  .adventurer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 2px solid var(--pixel-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-sprite {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .avatar-sprite::before {
+    content: '👤';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: var(--bg-dark);
+  }
+
+  /* === QUEST RATING === */
+  .quest-rating .star {
+    font-size: 16px;
+    text-shadow: 0 0 8px currentColor;
+    animation: starTwinkle 2s ease-in-out infinite;
+  }
+
+  .quest-rating .star:nth-child(1) { animation-delay: 0s; }
+  .quest-rating .star:nth-child(2) { animation-delay: 0.2s; }
+  .quest-rating .star:nth-child(3) { animation-delay: 0.4s; }
+  .quest-rating .star:nth-child(4) { animation-delay: 0.6s; }
+  .quest-rating .star:nth-child(5) { animation-delay: 0.8s; }
+
+  @keyframes starTwinkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* === TESTIMONIAL CONTENT === */
+  .testimonial-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-text {
+    line-height: 1.6;
+    flex: 1;
+    font-style: italic;
+    position: relative;
+  }
+
+  .testimonial-text::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    font-size: 2rem;
+    color: var(--primary-genie);
+    font-family: "Press Start 2P", monospace;
+  }
+
+  .testimonial-text::after {
+    content: '"';
+    position: absolute;
+    bottom: -20px;
+    right: -5px;
+    font-size: 2rem;
+    color: var(--primary-genie);
+    font-family: "Press Start 2P", monospace;
+  }
+
+  /* === QUEST COMPLETION === */
+  .quest-completion {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(22, 163, 74, 0.2) 100%
+    );
+    border: 1px solid rgba(22, 163, 74, 0.4);
+    margin-top: auto;
+  }
+
+  /* === SUCCESS STATS === */
+  .stats-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.1) 0%,
+      rgba(22, 33, 62, 0.9) 100%
+    );
+    border: 3px solid var(--gold);
+    position: relative;
+  }
+
+  .stats-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .stats-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-genie), transparent);
+  }
+
+  .stat-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .stat-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .stat-value {
+    text-shadow: 0 0 20px currentColor;
+    position: relative;
+  }
+
+  .stat-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  .stat-item:hover .stat-icon {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .page-content {
+      min-height: 350px;
+      padding: 1.5rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-content {
+      padding: 1rem;
+      min-height: 320px;
+    }
+
+    .adventurer-avatar {
+      width: 40px;
+      height: 40px;
+    }
+
+    .avatar-sprite::before {
+      font-size: 20px;
+    }
+
+    .testimonial-text {
+      font-size: 0.875rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+    }
+  }
+
+  /* === ACCESSIBILITY === */
+  @media (prefers-reduced-motion: reduce) {
+    .bestiary-bg,
+    .floating-pages,
+    .ink-spots,
+    .book-icon,
+    .quest-rating .star {
+      animation: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .page-content {
+      border-width: 3px;
+    }
+
+    .quest-completion {
+      border-width: 2px;
+    }
+  }
+
+  /* Focus indicators */
+  .page-content:focus-within {
+    outline: 3px solid var(--pixel-purple);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // === TESTIMONIALS SYSTEM ===
+  function startYourQuest() {
+    // Show quest initiation dialog
+    if (window.GentlemanRPG?.showDialog) {
+      window.GentlemanRPG.showDialog(
+        "Ready to join these success stories? Let's begin your epic coding journey together!"
+      );
+    }
+
+    // Show achievement
+    if (window.GentlemanRPG?.showAchievement) {
+      window.GentlemanRPG.showAchievement('📖', 'Grimoire Explored!', 'You discovered the tales of successful adventurers');
+    }
+
+    // Update player stats
+    if (window.playerStats) {
+      window.playerStats.xp += 50;
+      if (window.updatePlayerStats) {
+        window.updatePlayerStats();
+      }
+    }
+  }
+
+  // === TESTIMONIAL INTERACTIONS ===
+  function initializeTestimonialInteractions() {
+    const testimonialPages = document.querySelectorAll<HTMLElement>('.testimonial-page');
+
+    testimonialPages.forEach((page, index) => {
+      const pageContent = page.querySelector<HTMLElement>('.page-content');
+
+      if (pageContent) {
+        // Add click interaction
+        pageContent.addEventListener('click', function(this: HTMLElement) {
+          // Highlight effect
+          this.style.boxShadow = '0 0 40px rgba(75, 0, 130, 0.6), 0 8px 32px rgba(75, 0, 130, 0.4)';
+
+          setTimeout(() => {
+            this.style.boxShadow = '';
+          }, 1000);
+
+          // Show achievement for reading testimonials
+          if (window.GentlemanRPG?.showAchievement && index === 0) {
+            window.GentlemanRPG.showAchievement('📜', 'Story Read!', 'You discovered an adventurer\'s tale');
+          }
+        });
+
+        // Add keyboard navigation
+        pageContent.setAttribute('tabindex', '0');
+        pageContent.addEventListener('keydown', function(this: HTMLElement, e: KeyboardEvent) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      }
+    });
+  }
+
+  // === STATS ANIMATION ===
+  function initializeStatsAnimation() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statValues = entry.target.querySelectorAll<HTMLElement>('.stat-value');
+
+          // Animate each stat
+          setTimeout(() => animateStatValue(statValues[0], 0, 50, 2000), 200);
+          setTimeout(() => animateStatValue(statValues[1], 0, 95, 2000, '%'), 400);
+          setTimeout(() => animateStatValue(statValues[2], 0, 40, 2000, '%'), 600);
+          setTimeout(() => animateStatValue(statValues[3], 0, 10, 2000, '+'), 800);
+
+          // Show stats achievement
+          setTimeout(() => {
+            if (window.GentlemanRPG?.showAchievement) {
+              window.GentlemanRPG.showAchievement('📊', 'Stats Revealed!', 'Success metrics are impressive!');
+            }
+          }, 2500);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsPanel = document.querySelector('.stats-panel');
+    if (statsPanel) {
+      observer.observe(statsPanel);
+    }
+  }
+
+  function animateStatValue(element: HTMLElement, start: number, end: number, duration: number, suffix = '') {
+    if (!element) return;
+
+    const startTime = performance.now();
+
+    function updateValue(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+
+      const current = Math.floor(start + (end - start) * easeProgress);
+      element.textContent = `${current}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateValue);
+      }
+    }
+
+    requestAnimationFrame(updateValue);
+  }
+
+  // === TESTIMONIAL CAROUSEL ===
+  function initializeTestimonialCarousel() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate testimonial pages sequentially
+          const pages = entry.target.querySelectorAll<HTMLElement>('.testimonial-page');
+          pages.forEach((page, index) => {
+            setTimeout(() => {
+              page.style.animation = `slide-in-left 0.6s ease-out forwards`;
+            }, index * 150);
+          });
+
+          // Show testimonials achievement
+          setTimeout(() => {
+            if (window.GentlemanRPG?.showAchievement) {
+              window.GentlemanRPG.showAchievement('📖', 'Grimoire Opened!', 'Tales of successful quests revealed');
+            }
+          }, 1000);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const testimonialsGrid = document.querySelector('.testimonials-grid');
+    if (testimonialsGrid) {
+      observer.observe(testimonialsGrid);
+    }
+  }
+
+  // === KEYBOARD NAVIGATION ===
+  function initializeKeyboardNavigation() {
+    const testimonialPages = document.querySelectorAll<HTMLElement>('.page-content[tabindex]');
+    const ctaButton = document.querySelector<HTMLElement>('.testimonials-cta .btn-pixel-main');
+
+    testimonialPages.forEach((page, index) => {
+      page.addEventListener('keydown', (e: KeyboardEvent) => {
+        switch(e.key) {
+          case 'ArrowDown':
+          case 'ArrowRight':
+            e.preventDefault();
+            const nextPage = testimonialPages[index + 1] || ctaButton || testimonialPages[0];
+            nextPage.focus();
+            break;
+          case 'ArrowUp':
+          case 'ArrowLeft':
+            e.preventDefault();
+            const prevPage = testimonialPages[index - 1] || testimonialPages[testimonialPages.length - 1];
+            prevPage.focus();
+            break;
+          case 'Home':
+            e.preventDefault();
+            testimonialPages[0].focus();
+            break;
+          case 'End':
+            e.preventDefault();
+            (ctaButton || testimonialPages[testimonialPages.length - 1]).focus();
+            break;
+        }
+      });
+    });
+  }
+
+  // === ACCESSIBILITY FEATURES ===
+  function initializeAccessibility() {
+    // Add ARIA labels to testimonials
+    const testimonialPages = document.querySelectorAll<HTMLElement>('.testimonial-page');
+    testimonialPages.forEach((page) => {
+      const adventurerName = page.querySelector('.adventurer-name')?.textContent;
+      const pageContent = page.querySelector<HTMLElement>('.page-content');
+
+      if (pageContent && adventurerName) {
+        pageContent.setAttribute('aria-label', `Testimonial from ${adventurerName}`);
+        pageContent.setAttribute('role', 'article');
+      }
+    });
+
+    // Add ARIA labels to stats
+    const statItems = document.querySelectorAll<HTMLElement>('.stat-item');
+    statItems.forEach(item => {
+      const value = item.querySelector('.stat-value')?.textContent;
+      const label = item.querySelector('.stat-label')?.textContent;
+
+      if (value && label) {
+        item.setAttribute('aria-label', `${value} ${label}`);
+      }
+    });
+  }
+
+  // === INITIALIZATION ===
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeTestimonialInteractions();
+    initializeStatsAnimation();
+    initializeTestimonialCarousel();
+    initializeKeyboardNavigation();
+    initializeAccessibility();
+
+    // Add global function
+    window.startYourQuest = startYourQuest;
+  });
+
+  // === PERFORMANCE OPTIMIZATION ===
+  // Lazy load testimonial interactions during idle time
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      // Preload any testimonial-related assets
+      const testimonialPages = document.querySelectorAll<HTMLElement>('.page-content');
+      testimonialPages.forEach(page => {
+        page.style.willChange = 'transform';
+      });
+    });
+  }
+</script>

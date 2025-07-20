@@ -1,0 +1,804 @@
+---
+// Main index page - Integrates all RPG components
+import Layout from '../layouts/Layout.astro';
+import HeroHub from '../components/HeroHub.astro';
+import IndividualServices from '../components/IndividualServices.astro';
+import BusinessServices from '../components/BusinessServices.astro';
+import About from '../components/About.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Experience from '../components/Experience.astro';
+import FinalBossCTA from '../components/FinalBossCTA.astro';
+import TempleFooter from '../components/TempleFooter.astro';
+import { getServerLanguage, t } from '../i18n/index.ts';
+
+const currentLang = getServerLanguage();
+---
+
+<Layout
+  title={t('layout.meta.defaultDescription', currentLang)}
+  description={t('hero.tagline', currentLang)}
+  image="/og-gentleman-rpg.jpg"
+  lang={currentLang}
+>
+  <!-- Game Start Screen (Hidden after load) -->
+  <div id="game-start-screen" class="game-start-overlay">
+    <div class="start-screen-content">
+      <div class="game-logo">
+        <div class="logo-text text-pixel-3xl font-bold text-gold mb-4">
+            <span data-lang="en">{t('game.startScreen.title', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('game.startScreen.title', 'es')}</span>
+        </div>
+        <div class="logo-subtitle text-pixel-lg text-pixel-cyan mb-8">
+            <span data-lang="en">{t('hero.subtitle', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('hero.subtitle', 'es')}</span>
+        </div>
+      </div>
+
+      <div class="start-menu">
+        <button class="start-btn" id="start-game-btn">
+          <span class="btn-icon">▶</span>
+          <span class="btn-text" data-lang="en">{t('game.startScreen.startButton', 'en')}</span>
+          <span class="btn-text" data-lang="es" style="display: none;">{t('game.startScreen.startButton', 'es')}</span>
+        </button>
+      </div>
+
+      <div class="start-footer">
+        <div class="version-info text-pixel-sm text-pixel-gray">
+            <span data-lang="en">{t('game.startScreen.version', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('game.startScreen.version', 'es')}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Background for Start Screen -->
+    <div class="start-bg-animation">
+      <div class="floating-code"></div>
+      <div class="matrix-rain"></div>
+    </div>
+  </div>
+
+  <!-- Main Game Content -->
+  <div id="main-game-content" style="display: none;">
+
+    <!-- Nivel 1: Hero Hub -->
+    <HeroHub />
+
+    <!-- Nivel 2: Quest de Individuos -->
+    <IndividualServices />
+
+    <!-- Nivel 3: Quest de Guilds -->
+    <BusinessServices />
+
+    <!-- Nivel 4: NPC About -->
+    <About />
+
+    <!-- Nivel 5: Bestiary de Testimonios -->
+    <Testimonials />
+
+    <!-- Nivel 6: Hall of Fame -->
+    <Experience />
+
+    <!-- Nivel 7: Final Boss CTA -->
+    <FinalBossCTA />
+
+    <!-- Nivel 8: Temple Footer -->
+    <TempleFooter />
+  </div>
+
+  <!-- Game UI Overlay -->
+  <div id="game-ui-overlay" style="display: none;">
+    <!-- Mini Map -->
+    <div class="mini-map">
+      <div class="map-header text-pixel-sm font-bold text-pixel-cyan">{t('game.ui.map', currentLang)}</div>
+      <div class="map-levels">
+        <div class="map-level active" data-level="hero">1</div>
+        <div class="map-level" data-level="individual">2</div>
+        <div class="map-level" data-level="business">3</div>
+        <div class="map-level" data-level="about">4</div>
+        <div class="map-level" data-level="testimonials">5</div>
+        <div class="map-level" data-level="experience">6</div>
+        <div class="map-level" data-level="cta">7</div>
+        <div class="map-level" data-level="footer">8</div>
+      </div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+      <div class="tracker-header text-pixel-sm font-bold text-pixel-green">{t('game.ui.progress', currentLang)}</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="quest-progress"></div>
+      </div>
+      <div class="progress-text text-pixel-sm text-pixel-gray">
+        <span id="current-level">1</span> / 8 {t('game.ui.levels', currentLang)}
+      </div>
+    </div>
+
+    <!-- Achievement Notifications -->
+    <div class="achievement-notifications">
+      <!-- Achievements will be added dynamically -->
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Game Start Screen */
+  .game-start-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.98) 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .start-screen-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    max-width: 500px;
+    padding: 3rem;
+  }
+
+  .game-logo {
+    margin-bottom: 3rem;
+  }
+
+  .logo-text {
+    text-shadow:
+      0 0 10px var(--gold),
+      0 0 20px var(--gold),
+      2px 2px 0 rgba(0, 0, 0, 0.8);
+    animation: logoGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes logoGlow {
+    0% { text-shadow:
+      0 0 10px var(--gold),
+      0 0 20px var(--gold),
+      2px 2px 0 rgba(0, 0, 0, 0.8); }
+    100% { text-shadow:
+      0 0 20px var(--gold),
+      0 0 40px var(--gold),
+      0 0 60px var(--gold),
+      2px 2px 0 rgba(0, 0, 0, 0.8); }
+  }
+
+  .start-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .start-btn {
+    background: linear-gradient(45deg, var(--pixel-purple) 0%, var(--pixel-blue) 100%);
+    border: 2px solid var(--pixel-cyan);
+    color: var(--pixel-cyan);
+    padding: 1rem 2rem;
+    font-family: 'Monaco', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .start-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .start-btn:hover::before {
+    left: 100%;
+  }
+
+  .start-btn:hover {
+    background: linear-gradient(45deg, var(--pixel-cyan) 0%, var(--pixel-green) 100%);
+    color: var(--pixel-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.4);
+  }
+
+  .start-btn.secondary {
+    background: rgba(22, 33, 62, 0.8);
+    border-color: var(--pixel-border);
+    color: var(--pixel-gray);
+  }
+
+  .start-btn.secondary:hover {
+    background: rgba(0, 212, 170, 0.1);
+    border-color: var(--pixel-cyan);
+    color: var(--pixel-cyan);
+  }
+
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+
+  /* Start Screen Background Animation */
+  .start-bg-animation {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .floating-code {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(0, 212, 170, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 40%, rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.1) 2px, transparent 2px);
+    background-size: 150px 150px, 200px 200px, 180px 180px;
+    animation: codeFloat 20s linear infinite;
+  }
+
+  @keyframes codeFloat {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100px, -100px); }
+  }
+
+  .matrix-rain {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(0, 255, 65, 0.03) 2px,
+      transparent 4px
+    );
+    animation: matrixRain 3s linear infinite;
+  }
+
+  @keyframes matrixRain {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100px); }
+  }
+
+  /* Game UI Overlay */
+  #game-ui-overlay {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    pointer-events: none;
+  }
+
+  .mini-map,
+  .progress-tracker {
+    background: rgba(26, 26, 46, 0.9);
+    border: 2px solid var(--pixel-border);
+    padding: 1rem;
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    min-width: 120px;
+  }
+
+  .map-levels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .map-level {
+    width: 20px;
+    height: 20px;
+    background: rgba(22, 33, 62, 0.8);
+    border: 1px solid var(--pixel-border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--pixel-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .map-level.active {
+    background: var(--pixel-cyan);
+    color: var(--pixel-dark);
+    border-color: var(--pixel-cyan);
+    box-shadow: 0 0 8px rgba(0, 212, 170, 0.5);
+  }
+
+  .map-level.completed {
+    background: var(--pixel-green);
+    color: var(--pixel-dark);
+    border-color: var(--pixel-green);
+  }
+
+  .progress-tracker .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--pixel-dark);
+    border: 1px solid var(--pixel-border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  .progress-tracker .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pixel-cyan), var(--pixel-green));
+    width: 12.5%;
+    transition: width 0.8s ease-out;
+  }
+
+  /* Achievement Notifications */
+  .achievement-notifications {
+    position: fixed;
+    top: 5rem;
+    left: 1rem;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 300px;
+    background: rgba(26, 26, 46, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+
+  .achievement {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    padding: 16px;
+    border-radius: 0;
+    border: 3px solid var(--primary-genie);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: achievementSlideIn 0.5s ease-out;
+    box-shadow:
+      0 0 20px rgba(255, 102, 178, 0.6),
+      4px 4px 0px rgba(255, 102, 178, 0.3),
+      inset 2px 2px 0px rgba(255, 255, 255, 0.1);
+    font-family: Monaco, 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .achievement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 102, 178, 0.2),
+      transparent
+    );
+    animation: achievementShine 2s ease-in-out infinite;
+  }
+
+  @keyframes achievementShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes achievementSlideIn {
+    0% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  .achievement-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px var(--primary-genie));
+    min-width: 40px;
+    text-align: center;
+    animation: iconGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes iconGlow {
+    0% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 10px var(--primary-genie));
+    }
+    100% {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px var(--primary-genie));
+    }
+  }
+
+  .achievement-content {
+    flex: 1;
+  }
+
+  .achievement-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px var(--primary-genie);
+    color: var(--primary-genie);
+  }
+
+  .achievement-description {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    color: var(--text-secondary);
+    text-shadow: 0 0 5px rgba(255, 102, 178, 0.5);
+    font-weight: 600;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #game-ui-overlay {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+
+    .mini-map,
+    .progress-tracker {
+      padding: 0.75rem;
+      min-width: 100px;
+    }
+
+    .achievement-notifications {
+      top: 0.5rem;
+      left: 0.5rem;
+      max-width: 280px;
+    }
+
+    .achievement {
+      padding: 12px;
+      border-width: 2px;
+      box-shadow:
+        0 0 15px rgba(255, 102, 178, 0.5),
+        3px 3px 0px rgba(255, 102, 178, 0.3),
+        inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+    }
+
+    .achievement-icon {
+      font-size: 1.7rem;
+      min-width: 32px;
+    }
+
+    .start-screen-content {
+      padding: 2rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .map-levels {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .start-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  // Game state management
+  let gameStarted = false;
+  let currentLevel = 1;
+  let achievements: any[] = [];
+
+  // Global translations for JavaScript
+  const gameTranslations = {
+    en: {
+      levels: {
+        heroHub: "Hero Hub",
+        individualServices: "Individual Services",
+        businessServices: "Business Services",
+        about: "About",
+        testimonials: "Testimonials",
+        experience: "Experience",
+        finalBoss: "Final Boss",
+        templeFooter: "Temple Footer"
+      },
+      achievements: {
+        gameStarted: {
+          title: "Game Started!",
+          description: "Welcome to the ultimate developer quest"
+        },
+        npcEncountered: {
+          title: "NPC Encountered!",
+          description: "You met the mentor"
+        },
+        finalBossAppears: {
+          title: "Final Boss Appears!",
+          description: "The ultimate challenge awaits"
+        },
+        questComplete: {
+          title: "Quest Complete!",
+          description: "You reached the temple"
+        }
+      }
+    },
+    es: {
+      levels: {
+        heroHub: "Hero Hub",
+        individualServices: "Servicios Individuales",
+        businessServices: "Servicios Empresariales",
+        about: "Acerca de",
+        testimonials: "Testimonios",
+        experience: "Experiencia",
+        finalBoss: "Jefe Final",
+        templeFooter: "Templo Footer"
+      },
+      achievements: {
+        gameStarted: {
+          title: "¡Juego Iniciado!",
+          description: "Bienvenido a la aventura definitiva para desarrolladores"
+        },
+        npcEncountered: {
+          title: "¡NPC Encontrado!",
+          description: "Conociste al mentor"
+        },
+        finalBossAppears: {
+          title: "¡Aparece el Jefe Final!",
+          description: "El desafío definitivo te espera"
+        },
+        questComplete: {
+          title: "¡Quest Completada!",
+          description: "Llegaste al templo"
+        }
+      }
+    }
+  };
+
+  const currentLangJS = document.documentElement.lang || 'en';
+  const gt = gameTranslations[currentLangJS as 'en' | 'es'] || gameTranslations.en;
+
+  // Level data
+  const levels = [
+    { id: 'hero', name: gt.levels.heroHub, threshold: 0 },
+    { id: 'individual', name: gt.levels.individualServices, threshold: 12.5 },
+    { id: 'business', name: gt.levels.businessServices, threshold: 25 },
+    { id: 'about', name: gt.levels.about, threshold: 37.5 },
+    { id: 'testimonials', name: gt.levels.testimonials, threshold: 50 },
+    { id: 'experience', name: gt.levels.experience, threshold: 62.5 },
+    { id: 'cta', name: gt.levels.finalBoss, threshold: 75 },
+    { id: 'footer', name: gt.levels.templeFooter, threshold: 87.5 }
+  ];
+
+  // Start game function
+  function startGame() {
+    const startScreen = document.getElementById('game-start-screen') as HTMLElement;
+    const mainContent = document.getElementById('main-game-content') as HTMLElement;
+    const gameUI = document.getElementById('game-ui-overlay') as HTMLElement;
+
+    if (!startScreen || !mainContent || !gameUI) return;
+
+    // Fade out start screen
+    startScreen.style.opacity = '0';
+    setTimeout(() => {
+      startScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+      gameUI.style.display = 'flex';
+      gameStarted = true;
+
+      // Show welcome achievement
+      showAchievement('🎮', gt.achievements.gameStarted.title, gt.achievements.gameStarted.description);
+
+      // Start progress tracking
+      initializeProgressTracking();
+    }, 500);
+  }
+
+  // Initialize progress tracking
+  function initializeProgressTracking() {
+    window.addEventListener('scroll', updateProgress);
+    updateProgress(); // Initial update
+  }
+
+  // Update progress based on scroll
+  function updateProgress() {
+    if (!gameStarted) return;
+
+    const scrollPercent = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    const progressFill = document.getElementById('quest-progress') as HTMLElement;
+    const currentLevelElement = document.getElementById('current-level') as HTMLElement;
+
+    if (!progressFill || !currentLevelElement) return;
+
+    // Update progress bar
+    progressFill.style.width = Math.min(scrollPercent, 100) + '%';
+
+    // Update current level
+    let newLevel = 1;
+    for (let i = levels.length - 1; i >= 0; i--) {
+      if (scrollPercent >= levels[i].threshold) {
+        newLevel = i + 1;
+        break;
+      }
+    }
+
+    // Level change detection
+    if (newLevel !== currentLevel) {
+      const oldLevel = currentLevel;
+      currentLevel = newLevel;
+      currentLevelElement.textContent = String(currentLevel);
+
+      // Update mini-map
+      updateMiniMap();
+
+      // Show level achievement
+      if (currentLevel > oldLevel) {
+        const levelData = levels[currentLevel - 1];
+        showAchievement('⬆️', `Level ${currentLevel} Reached!`, levelData.name);
+
+        // Special achievements
+        if (currentLevel === 4) {
+          showAchievement('👨‍💻', gt.achievements.npcEncountered.title, gt.achievements.npcEncountered.description);
+        }
+        if (currentLevel === 7) {
+          showAchievement('👑', gt.achievements.finalBossAppears.title, gt.achievements.finalBossAppears.description);
+        }
+        if (currentLevel === 8) {
+          showAchievement('🏆', gt.achievements.questComplete.title, gt.achievements.questComplete.description);
+        }
+      }
+    }
+  }
+
+  // Update mini-map
+  function updateMiniMap() {
+    const mapLevels = document.querySelectorAll<HTMLElement>('.map-level');
+    mapLevels.forEach((level, index) => {
+      level.classList.remove('active', 'completed');
+      if (index + 1 === currentLevel) {
+        level.classList.add('active');
+      } else if (index + 1 < currentLevel) {
+        level.classList.add('completed');
+      }
+    });
+  }
+
+  // Show achievement notification
+  function showAchievement(icon: string, title: string, description: string) {
+    const container = document.querySelector('.achievement-notifications') as HTMLElement;
+    if (!container) return;
+
+    const achievement = document.createElement('div');
+    achievement.className = 'achievement';
+    achievement.innerHTML = `
+      <div class="achievement-icon">${icon}</div>
+      <div class="achievement-content">
+        <div class="achievement-title">${title}</div>
+        <div class="achievement-description">${description}</div>
+      </div>
+    `;
+
+    container.appendChild(achievement as Node);
+
+    // Play achievement sound (simulated)
+    console.log(`🏆 Achievement unlocked: ${title}`);
+
+    // Remove after 5 seconds
+    setTimeout(() => {
+      achievement.style.animation = 'achievementSlideIn 0.5s ease-out reverse';
+      setTimeout(() => {
+        achievement.remove();
+      }, 500);
+    }, 5000);
+
+    // Store achievement
+    achievements.push({ icon, title, description, timestamp: Date.now() });
+  }
+
+  // Mini-map level navigation
+  function navigateToLevel(levelIndex: number) {
+    const targetSection = document.getElementById(levels[levelIndex].id);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Easter eggs and special interactions
+  function initializeEasterEggs() {
+    // Konami code for special achievement
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+    let konamiCode: string[] = [];
+
+    document.addEventListener('keydown', function(e: KeyboardEvent) {
+      if (!gameStarted) return;
+
+      konamiCode.push(e.code);
+      if (konamiCode.length > konamiSequence.length) {
+        konamiCode.shift();
+      }
+
+      if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+        showAchievement('🎮', 'Konami Code!', 'The sacred sequence has been entered');
+        konamiCode = [];
+      }
+    });
+
+    // Double-click on logo for debug info
+    document.addEventListener('dblclick', function(e: MouseEvent) {
+      if ((e.target as Element).closest('.game-logo') && gameStarted) {
+        showAchievement('🐛', 'Debug Mode!', `Level ${currentLevel}, ${achievements.length} achievements`);
+      }
+    });
+  }
+
+  // Save game state to localStorage
+  function saveGameState() {
+    const gameState = {
+      currentLevel,
+      achievements,
+      scrollPosition: window.pageYOffset,
+      timestamp: Date.now()
+    };
+    localStorage.setItem('gentlemanRPG_saveData', JSON.stringify(gameState));
+  }
+
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', function() {
+    // Start game button
+    document.getElementById('start-game-btn')?.addEventListener('click', startGame);
+
+    // Mini-map navigation
+    document.querySelectorAll<HTMLElement>('.map-level').forEach((level, index) => {
+      level.addEventListener('click', () => {
+        if (gameStarted) {
+          navigateToLevel(index);
+        }
+      });
+    });
+
+    // Initialize easter eggs
+    initializeEasterEggs();
+
+    // Auto-save every 30 seconds
+    setInterval(() => {
+      if (gameStarted) {
+        saveGameState();
+      }
+    }, 30000);
+
+    // Save on page unload
+    window.addEventListener('beforeunload', saveGameState);
+
+    // Enter key to start game
+    document.addEventListener('keydown', function(e: KeyboardEvent) {
+      if (e.key === 'Enter' && !gameStarted) {
+        startGame();
+      }
+    });
+  });
+
+  // Global functions for component interaction
+  window.showAchievement = showAchievement;
+  window.navigateToLevel = navigateToLevel;
+</script>

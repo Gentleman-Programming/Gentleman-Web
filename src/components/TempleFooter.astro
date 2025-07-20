@@ -1,0 +1,1005 @@
+---
+// Temple Footer - Nivel 8: Temple Footer con diseño de templo pixelado
+import { t } from '../i18n/index.ts';
+---
+
+<footer id="footer" class="relative overflow-hidden">
+  <!-- Temple Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="temple-bg"></div>
+    <div class="temple-torches"></div>
+    <div class="temple-stairs"></div>
+  </div>
+
+  <!-- Temple Structure -->
+  <div class="temple-container relative z-10">
+
+    <!-- Temple Pillars -->
+    <div class="temple-pillars">
+      <div class="pillar pillar-left"></div>
+      <div class="pillar pillar-right"></div>
+    </div>
+
+    <!-- Temple Main Content -->
+    <div class="temple-main">
+
+      <!-- Temple Header -->
+      <div class="temple-header text-center mb-8 animate-on-scroll">
+        <div class="temple-title text-pixel-2xl font-bold text-gold mb-4">
+          {t('footer.title', "en")}
+        </div>
+        <div class="temple-subtitle text-pixel-base text-pixel-gray">
+          {t('footer.subtitle', "en")}
+        </div>
+      </div>
+
+      <!-- Temple Sections -->
+      <div class="temple-sections">
+
+        <!-- Navigation Links -->
+        <div class="temple-section animate-on-scroll">
+          <div class="section-header">
+            <h3 class="section-title text-pixel-lg font-bold text-pixel-cyan mb-4">
+              {t('footer.navigation.title', "en")}
+            </h3>
+          </div>
+          <div class="links-grid">
+            <a href="#hero" class="temple-link">
+              <span class="link-icon">🏠</span>
+              <span class="link-text">{t('footer.navigation.home', "en")}</span>
+            </a>
+            <a href="#services-individual" class="temple-link">
+              <span class="link-icon">⚔️</span>
+              <span class="link-text">{t('footer.navigation.mentoring', "en")}</span>
+            </a>
+            <a href="#services-business" class="temple-link">
+              <span class="link-icon">🏰</span>
+              <span class="link-text">{t('footer.navigation.consulting', "en")}</span>
+            </a>
+            <a href="#about" class="temple-link">
+              <span class="link-icon">👨‍💻</span>
+              <span class="link-text">{t('footer.navigation.about', "en")}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="temple-section animate-on-scroll">
+          <div class="section-header">
+            <h3 class="section-title text-pixel-lg font-bold text-pixel-green mb-4">
+              {t('footer.social.title', "en")}
+            </h3>
+          </div>
+          <div class="social-grid">
+            <a href="https://www.youtube.com/@gentleman-programming" target="_blank" class="social-link" data-platform="youtube">
+              <div class="social-icon youtube-icon"></div>
+              <div class="social-info">
+                <div class="social-name">YouTube</div>
+                <div class="social-stats">85K+ subs</div>
+              </div>
+            </a>
+            <a href="https://www.twitch.tv/gentleman_programming" target="_blank" class="social-link" data-platform="twitch">
+              <div class="social-icon twitch-icon"></div>
+              <div class="social-info">
+                <div class="social-name">Twitch</div>
+                <div class="social-stats">15.2K+ followers</div>
+              </div>
+            </a>
+            <a href="https://kick.com/gentleman-programming" target="_blank" class="social-link" data-platform="kick">
+              <div class="social-icon kick-icon"></div>
+              <div class="social-info">
+                <div class="social-name">Kick</div>
+                <div class="social-stats">1.5K+ followers</div>
+              </div>
+            </a>
+            <a href="https://discord.com/invite/3QVhF5vRsR" target="_blank" class="social-link" data-platform="discord">
+              <div class="social-icon discord-icon"></div>
+              <div class="social-info">
+                <div class="social-name">Discord</div>
+                <div class="social-stats">9.3K+ members</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/alanbuscaglia/" target="_blank" class="social-link" data-platform="linkedin">
+              <div class="social-icon linkedin-icon"></div>
+              <div class="social-info">
+                <div class="social-name">LinkedIn</div>
+                <div class="social-stats">Professional</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="temple-section animate-on-scroll">
+          <div class="section-header">
+            <h3 class="section-title text-pixel-lg font-bold text-pixel-purple mb-4">
+              {t('footer.contact.title', "en")}
+            </h3>
+          </div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-details">
+                <div class="contact-label">{t('footer.contact.email', "en")}</div>
+                <a href="mailto:gentleman@ohmybitz.com" class="contact-value">
+                  gentleman@ohmybitz.com
+                </a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🌍</div>
+              <div class="contact-details">
+                <div class="contact-label">{t('footer.contact.location', "en")}</div>
+                <div class="contact-value">Remote • Global</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">⏰</div>
+              <div class="contact-details">
+                <div class="contact-label">{t('footer.contact.response', "en")}</div>
+                <div class="contact-value">&lt; 24 hours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions */
+        <div class="temple-section animate-on-scroll">
+          <div class="section-header">
+            <h3 class="section-title text-pixel-lg font-bold text-pixel-orange mb-4">
+              {t('footer.quickActions.title', "en")}
+            </h3>
+          </div>
+          <div class="quick-actions">
+            <a href="#cta-final" class="action-btn primary">
+              <span class="btn-icon">🚀</span>
+              <span class="btn-text">{t('footer.quickActions.start', "en")}</span>
+            </a>
+            <a href="https://cal.com/gentleman-programming" target="_blank" class="action-btn secondary">
+              <span class="btn-icon">📅</span>
+              <span class="btn-text">{t('footer.quickActions.schedule', "en")}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temple Inscription -->
+      <div class="temple-inscription animate-on-scroll">
+        <div class="inscription-content">
+          <div class="inscription-text text-center">
+            <div class="main-quote text-pixel-lg text-gold font-bold mb-2">
+              {t('footer.inscription.quote', "en")}
+            </div>
+            <div class="sub-quote text-pixel-base text-pixel-gray">
+              {t('footer.inscription.author', "en")}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temple Base Info -->
+      <div class="temple-base">
+        <div class="base-content">
+          <div class="copyright-info">
+            <div class="copyright-text text-pixel-sm text-pixel-gray">
+              {t('footer.copyright', "en")}
+            </div>
+            <div class="legal-links">
+              <a href="/privacy" class="legal-link">{t('footer.legal.privacy', "en")}</a>
+              <span class="separator">•</span>
+              <a href="/terms" class="legal-link">{t('footer.legal.terms', "en")}</a>
+              <span class="separator">•</span>
+              <a href="/cookies" class="legal-link">{t('footer.legal.cookies', "en")}</a>
+            </div>
+          </div>
+
+          <div class="tech-badge">
+            <div class="badge-text text-pixel-sm text-pixel-cyan">
+              {t('footer.tech', "en")}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Torches -->
+    <div class="animated-torches">
+      <div class="torch torch-left">
+        <div class="torch-pole"></div>
+        <div class="torch-flame"></div>
+      </div>
+      <div class="torch torch-right">
+        <div class="torch-pole"></div>
+        <div class="torch-flame"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Portal -->
+  <div class="scroll-portal" id="scroll-portal">
+    <div class="portal-ring"></div>
+    <div class="portal-center" onclick="scrollToTop()">
+      <span class="portal-text">↑</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Temple Background */
+  footer {
+    background: linear-gradient(180deg,
+      rgba(26, 26, 46, 0.95) 0%,
+      rgba(22, 33, 62, 0.98) 50%,
+      rgba(10, 10, 10, 1) 100%);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .temple-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(139, 69, 19, 0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(139, 69, 19, 0.1) 25%, transparent 25%),
+      radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.05) 20%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 140, 0, 0.05) 20%, transparent 50%);
+    background-size: 60px 60px, 60px 60px, 200px 200px, 300px 300px;
+    animation: templeAura 25s linear infinite;
+  }
+
+  @keyframes templeAura {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  .temple-torches {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 10px;
+    height: 40px;
+    background: linear-gradient(0deg, #8b4513, #d2691e);
+    border-radius: 2px;
+    box-shadow:
+      calc(100vw - 100px) 0 0 #8b4513,
+      calc(100vw - 100px) 0 0 #d2691e;
+  }
+
+  .temple-torches::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff4500 30%, #ffa500 60%, transparent 80%);
+    border-radius: 50%;
+    animation: torchFlicker 2s ease-in-out infinite alternate;
+    box-shadow: calc(100vw - 90px) 0 0 rgba(255, 69, 0, 0.8);
+  }
+
+  @keyframes torchFlicker {
+    0% { transform: scale(1) rotate(-2deg); opacity: 0.8; }
+    100% { transform: scale(1.2) rotate(2deg); opacity: 1; }
+  }
+
+  .temple-stairs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background:
+      linear-gradient(to bottom, transparent 0%, rgba(139, 69, 19, 0.3) 20%, rgba(101, 67, 33, 0.5) 100%);
+  }
+
+  /* Temple Container */
+  .temple-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  /* Temple Pillars */
+  .temple-pillars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .pillar {
+    position: absolute;
+    width: 40px;
+    height: 80%;
+    background:
+      linear-gradient(to right,
+        rgba(139, 69, 19, 0.6) 0%,
+        rgba(160, 82, 45, 0.8) 20%,
+        rgba(139, 69, 19, 0.6) 100%);
+    border-radius: 20px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .pillar-left {
+    left: -20px;
+    transform: perspective(100px) rotateY(10deg);
+  }
+
+  .pillar-right {
+    right: -20px;
+    transform: perspective(100px) rotateY(-10deg);
+  }
+
+  .pillar::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    height: 20px;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.6), rgba(255, 140, 0, 0.4));
+    border-radius: 50%;
+  }
+
+  .pillar::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -15px;
+    right: -15px;
+    height: 30px;
+    background: linear-gradient(45deg, rgba(139, 69, 19, 0.8), rgba(101, 67, 33, 0.6));
+    border-radius: 50%;
+  }
+
+  /* Temple Main */
+  .temple-main {
+    position: relative;
+    z-index: 10;
+  }
+
+  .temple-header {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .temple-header::before,
+  .temple-header::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .temple-header::before { left: 50%; transform: translateX(-80px); }
+  .temple-header::after { left: 50%; transform: translateX(20px); }
+
+  /* Temple Sections */
+  .temple-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .temple-section {
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid var(--pixel-border);
+    border-radius: 8px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .temple-section:hover {
+    border-color: var(--pixel-cyan);
+    background: rgba(0, 212, 170, 0.05);
+    transform: translateY(-4px);
+  }
+
+  .section-title {
+    text-shadow: 0 0 10px currentColor;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Navigation Links */
+  .links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .temple-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(26, 26, 46, 0.5);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--pixel-gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .temple-link:hover {
+    color: var(--pixel-cyan);
+    border-color: var(--pixel-cyan);
+    background: rgba(0, 212, 170, 0.1);
+    transform: translateX(4px);
+  }
+
+  .link-icon {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Social Links */
+  .social-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(26, 26, 46, 0.5);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--pixel-gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    border-color: var(--pixel-green);
+    background: rgba(0, 255, 65, 0.1);
+    transform: scale(1.02);
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  .youtube-icon {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+  }
+
+  .youtube-icon::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .twitch-icon {
+    background: linear-gradient(45deg, #9146ff, #772ce8);
+  }
+
+  .twitch-icon::after {
+    content: '📺';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+  }
+
+  .discord-icon {
+    background: linear-gradient(45deg, #5865f2, #4752c4);
+  }
+
+  .discord-icon::after {
+    content: '💬';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+  }
+
+  .linkedin-icon {
+    background: linear-gradient(45deg, #0077b5, #005885);
+  }
+
+  .kick-icon {
+    background: linear-gradient(45deg, #1eff00, #00cc00);
+  }
+
+  .kick-icon::after {
+    content: '⚡';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+  }
+
+  .linkedin-icon::after {
+    content: '💼';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+  }
+
+  .social-info {
+    flex: 1;
+  }
+
+  .social-name {
+    font-weight: bold;
+    color: var(--pixel-green);
+    margin-bottom: 0.25rem;
+  }
+
+  .social-stats {
+    font-size: 0.8rem;
+    color: var(--pixel-gray);
+  }
+
+  /* Contact Info */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(26, 26, 46, 0.5);
+    border-radius: 4px;
+  }
+
+  .contact-icon {
+    font-size: 1.5rem;
+    width: 30px;
+    text-align: center;
+  }
+
+  .contact-details {
+    flex: 1;
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+    color: var(--pixel-gray);
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-value {
+    color: var(--pixel-purple);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .contact-value:hover {
+    color: var(--pixel-cyan);
+  }
+
+  /* Quick Actions */
+  .quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .action-btn.primary {
+    background: linear-gradient(45deg, var(--pixel-orange), #ff6b35);
+    color: white;
+    border: 2px solid var(--pixel-orange);
+  }
+
+  .action-btn.secondary {
+    background: rgba(26, 26, 46, 0.8);
+    color: var(--pixel-cyan);
+    border: 2px solid var(--pixel-cyan);
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .action-btn.primary:hover {
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  }
+
+  .action-btn.secondary:hover {
+    background: rgba(0, 212, 170, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+  }
+
+  /* Temple Inscription */
+  .temple-inscription {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(101, 67, 33, 0.5) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .inscription-content {
+    position: relative;
+  }
+
+  .inscription-content::before,
+  .inscription-content::after {
+    content: '❦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .inscription-content::before { left: -1rem; }
+  .inscription-content::after { right: -1rem; }
+
+  /* Temple Base */
+  .temple-base {
+    border-top: 2px solid var(--pixel-border);
+    padding-top: 2rem;
+  }
+
+  .base-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .legal-links {
+    margin-top: 0.5rem;
+  }
+
+  .legal-link {
+    color: var(--pixel-gray);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s ease;
+  }
+
+  .legal-link:hover {
+    color: var(--pixel-cyan);
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+    color: var(--pixel-gray);
+  }
+
+  .tech-badge {
+    padding: 0.5rem 1rem;
+    background: rgba(22, 33, 62, 0.6);
+    border: 1px solid var(--pixel-cyan);
+    border-radius: 20px;
+  }
+
+  /* Animated Torches */
+  .animated-torches {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    height: 60px;
+    pointer-events: none;
+  }
+
+  .torch {
+    position: absolute;
+    width: 20px;
+    height: 60px;
+  }
+
+  .torch-left { left: 0; }
+  .torch-right { right: 0; }
+
+  .torch-pole {
+    width: 6px;
+    height: 40px;
+    background: linear-gradient(to bottom, #8b4513, #654321);
+    margin: 0 auto;
+    border-radius: 3px;
+  }
+
+  .torch-flame {
+    width: 20px;
+    height: 25px;
+    background: radial-gradient(ellipse at bottom, #ff4500 20%, #ffa500 60%, #ffff00 90%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    margin: -5px auto 0;
+    animation: flameFlicker 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes flameFlicker {
+    0% { transform: scale(1) rotate(-1deg); }
+    100% { transform: scale(1.1) rotate(1deg); opacity: 0.9; }
+  }
+
+  /* Scroll Portal */
+  .scroll-portal {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .scroll-portal.visible {
+    opacity: 1;
+  }
+
+  .portal-ring {
+    position: absolute;
+    inset: 0;
+    border: 3px solid var(--pixel-cyan);
+    border-radius: 50%;
+    animation: portalSpin 4s linear infinite;
+  }
+
+  .portal-ring::before,
+  .portal-ring::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--pixel-cyan);
+    border-radius: 50%;
+  }
+
+  .portal-ring::before {
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .portal-ring::after {
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @keyframes portalSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .portal-center {
+    position: absolute;
+    inset: 8px;
+    background: radial-gradient(circle, var(--pixel-cyan) 0%, transparent 70%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .portal-center:hover {
+    background: radial-gradient(circle, var(--pixel-green) 0%, transparent 70%);
+    transform: scale(1.1);
+  }
+
+  .portal-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--pixel-dark);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .temple-sections {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .base-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .inscription-content::before,
+    .inscription-content::after {
+      display: none;
+    }
+
+    .temple-pillars {
+      display: none;
+    }
+
+    .social-grid {
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      padding: 0.75rem;
+    }
+
+    .social-icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .temple-container {
+      padding: 0 1rem;
+    }
+
+    .temple-section {
+      padding: 1.5rem;
+    }
+
+    .temple-inscription {
+      padding: 1.5rem;
+    }
+
+    .main-quote {
+      font-size: 1rem;
+    }
+
+    .scroll-portal {
+      width: 50px;
+      height: 50px;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+</style>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Show/hide scroll portal
+  function toggleScrollPortal() {
+    const portal = document.getElementById('scroll-portal') as HTMLElement;
+    if (!portal) return;
+
+    const scrollPosition = window.pageYOffset;
+
+    if (scrollPosition > 300) {
+      portal.classList.add('visible');
+    } else {
+      portal.classList.remove('visible');
+    }
+  }
+
+  // Initialize scroll portal
+  document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('scroll', toggleScrollPortal);
+
+    // Add sound effects to social links
+    document.querySelectorAll<HTMLElement>('.social-link').forEach(link => {
+      link.addEventListener('mouseenter', function(this: HTMLElement) {
+        const platform = this.dataset.platform;
+        console.log(`🔊 Social hover sound: ${platform}`);
+      });
+
+      link.addEventListener('click', function(this: HTMLElement) {
+        const platform = this.dataset.platform;
+        console.log(`🔊 Social click sound: ${platform}`);
+      });
+    });
+
+    // Add click effects to action buttons
+    document.querySelectorAll<HTMLElement>('.action-btn').forEach(btn => {
+      btn.addEventListener('click', function(this: HTMLElement) {
+        this.style.animation = 'pixelShake 0.3s ease-in-out';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 300);
+      });
+    });
+
+    // Temple links smooth scroll
+    document.querySelectorAll<HTMLAnchorElement>('.temple-link[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href')?.substring(1);
+        if (!targetId) return;
+
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animate temple sections on scroll
+    const templeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            (entry.target as HTMLElement).style.animation = 'pixelFadeIn 0.8s ease-out forwards';
+          }, index * 200);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll<HTMLElement>('.temple-section').forEach(section => {
+      templeObserver.observe(section);
+    });
+
+    // Portal click effect
+    const portal = document.getElementById('scroll-portal') as HTMLElement;
+    if (portal) {
+      portal.addEventListener('click', function(this: HTMLElement) {
+        console.log('🔊 Portal activation sound');
+
+        // Add portal effect
+        this.style.animation = 'pixelGlow 0.5s ease-in-out';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 500);
+      });
+    }
+
+    // Add tooltips to contact items
+    document.querySelectorAll<HTMLElement>('.contact-item').forEach(item => {
+      item.addEventListener('mouseenter', function(this: HTMLElement) {
+        const label = this.querySelector('.contact-label')?.textContent;
+        console.log(`ℹ️ Contact info: ${label}`);
+      });
+    });
+  });
+
+  // Global function for scroll to top
+  window.scrollToTop = scrollToTop;
+</script>

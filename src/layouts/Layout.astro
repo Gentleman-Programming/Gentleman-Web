@@ -1,0 +1,864 @@
+---
+import { t } from '../i18n/index.ts';
+import type { Language } from '../i18n/index.ts';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  lang?: Language;
+}
+
+// For static generation, default to English and let client-side handle detection
+const currentLang: Language = Astro.props.lang || 'en';
+const { title, description = t('layout.meta.defaultDescription', currentLang), image = "/og-image.jpg" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={currentLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={t('layout.meta.keywords', currentLang)} />
+    <meta name="author" content={t('layout.meta.author', currentLang)} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url} />
+
+    <!-- Fonts Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": t('layout.jsonLd.name', currentLang),
+        "jobTitle": t('layout.jsonLd.jobTitle', currentLang),
+        "description": t('layout.jsonLd.description', currentLang),
+        "url": "https://gentleman-programming.com",
+        "sameAs": [
+          "https://www.youtube.com/@gentleman-programming",
+          "https://www.twitch.tv/gentleman_programming",
+          "https://discord.com/invite/3QVhF5vRsR"
+        ],
+        "knowsAbout": t('layout.jsonLd.knowsAbout', currentLang),
+        "offers": {
+          "@type": "Service",
+          "serviceType": t('layout.jsonLd.serviceType', currentLang),
+          "description": t('layout.jsonLd.serviceDescription', currentLang)
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">{t('layout.accessibility.skipToContent', currentLang)}</a>
+
+    <!-- Language Selector -->
+    <div class="language-selector-container">
+      <div class="language-selector">
+        <button
+          class="lang-toggle"
+          id="language-toggle"
+          aria-label={t('layout.accessibility.switchLanguage', currentLang)}
+          title={`${t('layout.accessibility.switchLanguage', 'en')} / ${t('layout.accessibility.switchLanguage', 'es')}`}
+        >
+          <div class="lang-display">
+            <span class="current-lang" id="current-lang">{currentLang === 'en' ? 'EN' : 'ES'}</span>
+            <span class="lang-separator">|</span>
+            <span class="alt-lang" id="alt-lang">{currentLang === 'en' ? 'ES' : 'EN'}</span>
+          </div>
+          <div class="toggle-icon">🌐</div>
+        </button>
+
+        <!-- Language Menu -->
+        <div class="lang-menu" id="lang-menu">
+          <div class="lang-option" data-lang="en">
+            <span class="lang-flag">🇺🇸</span>
+            <span class="lang-name">{t('layout.language.english', currentLang)}</span>
+          </div>
+          <div class="lang-option" data-lang="es">
+            <span class="lang-flag">🇪🇸</span>
+            <span class="lang-name">{t('layout.language.spanish', currentLang)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parallax Background Layers -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="parallax-layer stars-bg"></div>
+      <div class="parallax-layer polygon-bg"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="relative z-10">
+      <slot />
+    </main>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-pixel-bg z-50 flex items-center justify-center">
+      <div class="dialog-box text-center">
+        <div class="gentleman-avatar mx-auto mb-4"></div>
+        <div class="text-pixel-lg text-pixel-cyan mb-2">{t('layout.loading.text', currentLang)}</div>
+        <div class="stat-bar w-32 mx-auto">
+          <div class="stat-bar-fill xp-bar" style="width: 0%" id="loading-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ambient Audio Controls -->
+    <div class="fixed top-4 right-4 z-40">
+      <button
+        id="audio-toggle"
+        class="pixel-btn text-pixel-sm p-2"
+        aria-label={t('layout.accessibility.toggleSound', currentLang)}
+      >
+        🔊
+      </button>
+    </div>
+
+    <script>
+      // Global translations for JavaScript
+      const translations = {
+        en: {
+          audioEnabled: "🎵 Ambient RPG music enabled",
+          audioDisabled: "🔇 Ambient music disabled",
+          hoverSound: "🔊 Menu hover sound",
+          selectSound: "🔊 Menu select sound",
+          konamiActivated: "🎮 KONAMI CODE ACTIVATED! +99 XP unlocked",
+          skipToContent: "Skip to main content",
+          toggleSound: "Toggle ambient sound",
+          switchLanguage: "Switch language",
+          loading: "LOADING QUEST...",
+          mapHeader: "MAP",
+          progressHeader: "PROGRESS",
+          levelsText: "LEVELS"
+        },
+        es: {
+          audioEnabled: "🎵 Música RPG ambiental activada",
+          audioDisabled: "🔇 Música ambiental desactivada",
+          hoverSound: "🔊 Sonido hover menú",
+          selectSound: "🔊 Sonido selección menú",
+          konamiActivated: "🎮 ¡CÓDIGO KONAMI ACTIVADO! +99 XP desbloqueado",
+          skipToContent: "Ir al contenido principal",
+          toggleSound: "Alternar sonido ambiental",
+          switchLanguage: "Cambiar idioma",
+          loading: "CARGANDO QUEST...",
+          mapHeader: "MAPA",
+          progressHeader: "PROGRESO",
+          levelsText: "NIVELES"
+        }
+      };
+
+      // Get current language from localStorage, URL, or DOM
+      function getCurrentLangFromDOM() {
+        // First check URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
+          // Save to localStorage and return
+          localStorage.setItem('preferred-language', urlLang);
+          return urlLang;
+        }
+
+        // Then check localStorage
+        const stored = localStorage.getItem('preferred-language');
+        if (stored && (stored === 'en' || stored === 'es')) {
+          return stored;
+        }
+
+        // Check browser language as fallback
+        const browserLang = navigator.language.split('-')[0];
+        if (browserLang === 'es') {
+          return 'es';
+        }
+
+        // Default to English for consistency
+        return 'en';
+      }
+
+      // Switch all lang-content elements to show/hide based on current language
+      function switchContentLanguage(lang: string) {
+        // Hide all lang-content elements first
+        document.querySelectorAll('[data-lang]').forEach(element => {
+          const htmlElement = element as HTMLElement;
+          if (htmlElement.getAttribute('data-lang') !== lang) {
+            htmlElement.style.display = 'none';
+          }
+        });
+
+        // Show elements for the current language
+        document.querySelectorAll(`[data-lang="${lang}"]`).forEach(element => {
+          const htmlElement = element as HTMLElement;
+          htmlElement.style.display = '';
+        });
+
+        // Update any data-i18n elements with direct key lookup
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          const t = translations[lang as 'en' | 'es'] || translations.en;
+          if (key && key in t) {
+            (element as HTMLElement).textContent = (t as Record<string, string>)[key];
+          }
+        });
+
+        console.log(`🌐 Content switched to ${lang}`);
+      }
+
+      // Update content based on language
+      function updatePageContent(lang: string) {
+        const t = translations[lang as 'en' | 'es'] || translations.en;
+
+        // Update all translatable elements immediately
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          if (key && key in t) {
+            (element as HTMLElement).textContent = (t as Record<string, string>)[key];
+          }
+        });
+
+        // Update skip link
+        const skipLink = document.querySelector('.skip-link');
+        if (skipLink) skipLink.textContent = t.skipToContent;
+
+        // Update audio button aria-label
+        const audioBtn = document.getElementById('audio-toggle');
+        if (audioBtn) audioBtn.setAttribute('aria-label', t.toggleSound);
+
+        // Update loading text
+        const loadingText = document.querySelector('#loading-screen .text-pixel-lg');
+        if (loadingText) loadingText.textContent = t.loading;
+
+        // Update language toggle title and aria-label
+        const langToggle = document.getElementById('language-toggle');
+        if (langToggle) {
+          langToggle.setAttribute('aria-label', t.switchLanguage);
+          const enSwitch = translations.en.switchLanguage;
+          const esSwitch = translations.es.switchLanguage;
+          langToggle.setAttribute('title', `${enSwitch} / ${esSwitch}`);
+        }
+
+        // Update language options text
+        const langOptions = document.querySelectorAll('.lang-option .lang-name');
+        if (langOptions.length >= 2) {
+          langOptions[0].textContent = lang === 'en' ? 'English' : 'Inglés';
+          langOptions[1].textContent = lang === 'en' ? 'Spanish' : 'Español';
+        }
+
+        // Update map header
+        const mapHeader = document.querySelector('.map-header');
+        if (mapHeader) mapHeader.textContent = t.mapHeader;
+
+        // Update progress header
+        const progressHeader = document.querySelector('.tracker-header');
+        if (progressHeader) progressHeader.textContent = t.progressHeader;
+
+        // Update levels text
+        const levelsText = document.querySelector('.progress-text');
+        if (levelsText) {
+          const currentLevel = document.getElementById('current-level');
+          const levelNum = currentLevel ? currentLevel.textContent : '1';
+          levelsText.innerHTML = `<span id="current-level">${levelNum}</span> / 8 ${t.levelsText}`;
+        }
+
+        // Trigger a custom event for other components to listen to
+        window.dispatchEvent(new CustomEvent('languageContentUpdated', {
+          detail: { language: lang, translations: t }
+        }));
+      }
+
+      // Language management
+      let currentLanguage = getCurrentLangFromDOM();
+      let isMenuOpen = false;
+
+      // Initialize language selector
+      function initLanguageSelector() {
+        const toggle = document.getElementById('language-toggle');
+        const menu = document.getElementById('lang-menu');
+        // Language elements will be updated by updateLanguageDisplay
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        if (!toggle || !menu) return;
+
+        // Get current language and update content immediately
+        currentLanguage = getCurrentLangFromDOM();
+
+        // Update HTML lang attribute immediately
+        document.documentElement.lang = currentLanguage;
+
+        // Switch content language immediately
+        switchContentLanguage(currentLanguage);
+
+        // Update content and display
+        updatePageContent(currentLanguage);
+        updateLanguageDisplay();
+
+        // Toggle menu on click
+        toggle.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e: MouseEvent) => {
+          if (!(e.target as Element).closest('.language-selector')) {
+            closeMenu();
+          }
+        });
+
+        // Language option selection
+        langOptions.forEach(option => {
+          option.addEventListener('click', () => {
+            const selectedLang = (option as HTMLElement).dataset?.lang;
+            if (selectedLang && selectedLang !== currentLanguage) {
+              changeLanguage(selectedLang);
+            }
+            closeMenu();
+          });
+        });
+
+        // Keyboard navigation
+        toggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu();
+          }
+          if (e.key === 'Escape') {
+            closeMenu();
+          }
+        });
+      }
+
+      function updateLanguageDisplay() {
+        const currentLangSpan = document.getElementById('current-lang');
+        const altLangSpan = document.getElementById('alt-lang');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        if (!currentLangSpan || !altLangSpan) return;
+
+        if (currentLanguage === 'en') {
+          currentLangSpan.textContent = 'EN';
+          altLangSpan.textContent = 'ES';
+        } else {
+          currentLangSpan.textContent = 'ES';
+          altLangSpan.textContent = 'EN';
+        }
+
+        // Update active option
+        langOptions.forEach(option => {
+          option.classList.toggle('active', (option as HTMLElement).dataset?.lang === currentLanguage);
+        });
+
+        // Update document language
+        document.documentElement.lang = currentLanguage;
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById('lang-menu');
+        if (!menu) return;
+
+        isMenuOpen = !isMenuOpen;
+        menu.classList.toggle('active', isMenuOpen);
+
+        console.log('🔊 Language menu toggle');
+      }
+
+      function closeMenu() {
+        const menu = document.getElementById('lang-menu');
+        if (!menu) return;
+
+        isMenuOpen = false;
+        menu.classList.remove('active');
+      }
+
+      function changeLanguage(newLang: string) {
+        const oldLang = currentLanguage;
+        currentLanguage = newLang;
+
+        // Save language preference
+        localStorage.setItem('preferred-language', newLang);
+        document.documentElement.lang = newLang;
+
+        // Update all page content immediately
+        updatePageContent(newLang);
+
+        // Update language selector display
+        updateLanguageDisplay();
+
+        // Show achievement notification
+        const langName = newLang === 'en' ? 'English' : 'Español';
+        if (window.showAchievement) {
+          window.showAchievement('🌐', 'Language Changed!', `Switched to ${langName}`);
+        }
+
+        // Update URL with language parameter
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', newLang);
+        window.history.replaceState({}, '', url.toString());
+
+        // Reload page after showing achievement
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+
+        console.log(`🌐 Language changed from ${oldLang} to ${newLang}`);
+      }
+
+      // Early language initialization (before DOM ready)
+      (function() {
+        const lang = getCurrentLangFromDOM();
+        document.documentElement.lang = lang;
+        currentLanguage = lang;
+
+        // Apply language immediately if DOM is ready
+        if (document.readyState !== 'loading') {
+          switchContentLanguage(lang);
+          updatePageContent(lang);
+          updateLanguageDisplay();
+        }
+      })();
+
+      // Loading Screen Animation
+      document.addEventListener('DOMContentLoaded', function() {
+        // Apply language settings immediately on DOM ready
+        const lang = getCurrentLangFromDOM();
+        currentLanguage = lang;
+        document.documentElement.lang = lang;
+        switchContentLanguage(lang);
+        updatePageContent(lang);
+        updateLanguageDisplay();
+
+        const loadingScreen = document.getElementById('loading-screen') as HTMLElement;
+        const loadingBar = document.getElementById('loading-bar') as HTMLElement;
+
+        if (!loadingScreen || !loadingBar) return;
+
+        // Simulate loading
+        let progress = 0;
+        const loadingInterval = setInterval(() => {
+          progress += Math.random() * 15;
+          if (progress > 100) progress = 100;
+
+          loadingBar.style.width = progress + '%';
+
+          if (progress >= 100) {
+            clearInterval(loadingInterval);
+            setTimeout(() => {
+              loadingScreen.style.opacity = '0';
+              setTimeout(() => {
+                loadingScreen.style.display = 'none';
+              }, 500);
+            }, 500);
+          }
+        }, 100);
+
+        // Initialize language selector after DOM is ready
+        initLanguageSelector();
+      });
+
+      // Scroll to Top Button
+      window.addEventListener('scroll', function() {
+        const scrollToTop = document.getElementById('scroll-to-top') as HTMLElement;
+        if (scrollToTop) {
+          if (window.pageYOffset > 300) {
+            scrollToTop.classList.remove('opacity-0', 'pointer-events-none');
+            scrollToTop.classList.add('opacity-100');
+          } else {
+            scrollToTop.classList.add('opacity-0', 'pointer-events-none');
+            scrollToTop.classList.remove('opacity-100');
+          }
+        }
+      });
+
+      document.getElementById('scroll-to-top')?.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Animate elements on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animate-on-scroll class
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Audio Toggle (ambient RPG sounds)
+      let audioEnabled = false;
+      document.getElementById('audio-toggle')?.addEventListener('click', function(this: HTMLElement) {
+        audioEnabled = !audioEnabled;
+        this.textContent = audioEnabled ? '🔇' : '🔊';
+
+        // Here you would implement actual audio logic
+        if (audioEnabled) {
+          // Play ambient RPG sounds
+          const lang = getCurrentLangFromDOM();
+          console.log(translations[lang as 'en' | 'es'].audioEnabled);
+        } else {
+          // Stop ambient sounds
+          const lang = getCurrentLangFromDOM();
+          console.log(translations[lang as 'en' | 'es'].audioDisabled);
+        }
+      });
+
+      // Keyboard Navigation
+      document.addEventListener('keydown', function(e) {
+        // ESC key to scroll to top
+        if (e.key === 'Escape') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+
+        // Spacebar to toggle audio (when not focused on input)
+        if (e.key === ' ' && e.target === document.body) {
+          e.preventDefault();
+          (document.getElementById('audio-toggle') as HTMLElement)?.click();
+        }
+      });
+
+      // Menu item hover sound effect (simulated)
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          // Simulate retro menu hover sound
+          const lang = getCurrentLangFromDOM();
+          console.log(translations[lang as 'en' | 'es'].hoverSound);
+        });
+
+        item.addEventListener('click', function() {
+          // Simulate retro menu select sound
+          const lang = getCurrentLangFromDOM();
+          console.log(translations[lang as 'en' | 'es'].selectSound);
+        });
+      });
+
+      // Add subtle screen shake on boss defeat (exported for global use)
+      function triggerScreenShake() {
+        document.body.style.animation = 'pixelShake 0.5s ease-in-out';
+        setTimeout(() => {
+          document.body.style.animation = '';
+        }, 500);
+      }
+
+      // Export for global access
+      window.triggerScreenShake = triggerScreenShake;
+
+      // Konami Code Easter Egg
+      const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+      let konamiCode: string[] = [];
+
+      document.addEventListener('keydown', function(e) {
+        konamiCode.push(e.code);
+        if (konamiCode.length > konamiSequence.length) {
+          konamiCode.shift();
+        }
+
+        if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+          // Easter egg activated!
+          document.body.classList.add('animate-pulse');
+          setTimeout(() => {
+            const lang = getCurrentLangFromDOM();
+            alert(translations[lang as 'en' | 'es'].konamiActivated);
+            document.body.classList.remove('animate-pulse');
+          }, 100);
+          konamiCode = [];
+        }
+      });
+
+      // Performance monitoring
+      window.addEventListener('load', function() {
+        // Log performance metrics
+        if ('performance' in window) {
+          const loadTime = performance.now();
+          console.log(`⚡ Page loaded in ${loadTime}ms`);
+        }
+      });
+
+      // Export for global access
+      window.changeLanguage = changeLanguage as (newLang: string) => void;
+      window.getCurrentLanguage = () => currentLanguage;
+    </script>
+
+    <style>
+      /* Import global styles */
+      @import '../styles/global.css';
+
+      /* Skip link for accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--pixel-cyan);
+        color: var(--pixel-dark);
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        font-weight: bold;
+        transition: top 0.3s;
+      }
+
+      .skip-link:focus {
+        top: 6px;
+      }
+
+      /* Language Selector Styles */
+      .language-selector-container {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 200;
+      }
+
+      .language-selector {
+        position: relative;
+      }
+
+      .lang-toggle {
+        background: rgba(26, 26, 46, 0.95);
+        border: 2px solid #4a5568;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        color: #00e6c7;
+        font-family: 'Monaco', monospace;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        min-height: 40px;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      .lang-toggle:hover {
+        border-color: #00e6c7;
+        background: rgba(0, 230, 199, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .lang-toggle:focus {
+        outline: 2px solid #00e6c7;
+        outline-offset: 2px;
+      }
+
+      .lang-display {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .current-lang {
+        color: #00e6c7;
+        font-weight: bold;
+      }
+
+      .lang-separator {
+        color: #718096;
+      }
+
+      .alt-lang {
+        color: #718096;
+        opacity: 0.6;
+      }
+
+      .toggle-icon {
+        font-size: 1rem;
+        animation: globeSpin 4s linear infinite;
+      }
+
+      @keyframes globeSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .lang-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin-top: 0.5rem;
+        background: rgba(26, 26, 46, 0.98);
+        border: 2px solid #4a5568;
+        border-radius: 6px;
+        backdrop-filter: blur(15px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        min-width: 120px;
+      }
+
+      .lang-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .lang-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Monaco', monospace;
+        font-size: 0.8rem;
+        color: #718096;
+        position: relative;
+      }
+
+      .lang-option::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        background: linear-gradient(90deg, #00e6c7, transparent);
+        transition: width 0.3s ease;
+      }
+
+      .lang-option:hover {
+        background: rgba(0, 230, 199, 0.1);
+        color: #00e6c7;
+      }
+
+      .lang-option:hover::before {
+        width: 4px;
+      }
+
+      .lang-option.active {
+        background: rgba(0, 230, 199, 0.2);
+        color: #00e6c7;
+        font-weight: bold;
+      }
+
+      .lang-option.active::before {
+        width: 4px;
+      }
+
+      .lang-flag {
+        font-size: 1rem;
+      }
+
+      .lang-name {
+        flex: 1;
+      }
+
+      /* Additional layout-specific styles */
+      body {
+        background:
+          radial-gradient(circle at 20% 50%, rgba(22, 33, 62, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(15, 52, 96, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(26, 26, 46, 0.3) 0%, transparent 50%),
+          var(--pixel-bg);
+        min-height: 100vh;
+      }
+
+      /* Smooth scrolling for all browsers */
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+
+      /* Custom scrollbar for Firefox */
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--pixel-cyan) var(--pixel-dark);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .language-selector-container {
+          top: 0.5rem;
+          left: 0.5rem;
+        }
+
+        .lang-toggle {
+          padding: 0.4rem 0.6rem;
+          font-size: 0.7rem;
+          min-height: 36px;
+        }
+
+        .toggle-icon {
+          font-size: 0.9rem;
+        }
+
+        .lang-option {
+          padding: 0.6rem;
+          font-size: 0.7rem;
+        }
+      }
+
+      /* High contrast mode */
+      @media (prefers-contrast: high) {
+        .lang-toggle {
+          border-width: 3px;
+          background: rgba(0, 0, 0, 0.9);
+        }
+
+        .lang-menu {
+          background: rgba(0, 0, 0, 0.95);
+          border-width: 3px;
+        }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .toggle-icon {
+          animation: none;
+        }
+
+        .lang-toggle,
+        .lang-menu,
+        .lang-option {
+          transition: none;
+        }
+      }
+    </style>
+
+
+  </body>
+</html>

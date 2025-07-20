@@ -1,0 +1,925 @@
+---
+// Business Services - Nivel 3: Quest de Guilds con menú de misiones e i18n
+import { t } from '../i18n/index.ts';
+---
+
+<section id="services-business" class="min-h-screen py-20 relative overflow-hidden bg-bg-dark">
+  <!-- Section Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="starfield"></div>
+    <div class="pixel-grid"></div>
+    <div class="guild-hall-bg"></div>
+    <div class="floating-banners"></div>
+    <div class="torch-flames"></div>
+    <div class="geometric-bg opacity-10"></div>
+  </div>
+
+  <!-- Section Header -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16 fade-in-up">
+      <div class="section-subtitle font-code text-sm text-pixel-cyan mb-4">
+        <span class="blinking-cursor animate-pixel-blink">►</span>
+        <span data-lang="en">{t('business.subtitle', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('business.subtitle', 'es')}</span>
+      </div>
+      <h2 class="section-title font-heading text-4xl md:text-6xl font-bold text-text-primary mb-6">
+        <span data-lang="en">{t('business.title', 'en')} <span class="text-pixel-orange text-glow-yellow">GUILD</span></span>
+        <span data-lang="es" style="display: none;">{t('business.title', 'es')} <span class="text-pixel-orange text-glow-yellow">GUILD</span></span>
+      </h2>
+      <div class="section-description font-code text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+        <span data-lang="en">{t('business.description', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('business.description', 'es')}</span>
+      </div>
+    </div>
+
+    <!-- Mission Board Container -->
+    <div class="mission-board-container max-w-6xl mx-auto">
+      <!-- Guild Banner -->
+      <div class="guild-banner mb-12 scale-in">
+        <div class="banner-content pixel-panel p-6">
+          <div class="banner-icon text-6xl mb-4">🏰</div>
+          <div class="banner-text text-center">
+            <div class="guild-title font-heading text-2xl font-bold text-gold mb-2">
+              <span data-lang="en">{t('business.banner.title', 'en')}</span>
+              <span data-lang="es" style="display: none;">{t('business.banner.title', 'es')}</span>
+            </div>
+            <div class="guild-subtitle font-code text-base text-text-secondary">
+              <span data-lang="en">{t('business.banner.subtitle', 'en')}</span>
+              <span data-lang="es" style="display: none;">{t('business.banner.subtitle', 'es')}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission List -->
+      <div class="mission-list space-y-8">
+
+        <!-- Mission 1: Auditoría Arquitectónica -->
+        <div class="mission-card slide-in-left" data-mission="audit">
+          <div class="mission-content pixel-panel p-6">
+            <div class="mission-header flex items-start justify-between mb-4">
+              <div class="mission-rank">
+                <span class="rank-badge rank-s font-pixel text-pixel-xs">RANK S</span>
+              </div>
+              <div class="mission-difficulty">
+                <div class="difficulty-stars">
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mission-info mb-6">
+              <h3 class="mission-title font-heading text-xl font-bold text-text-primary mb-3">
+                <span data-lang="en">{t('business.missions.audit.title', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.audit.title', 'es')}</span>
+              </h3>
+              <div class="mission-subtitle font-code text-sm text-pixel-cyan mb-4">
+                <span data-lang="en">{t('business.missions.audit.subtitle', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.audit.subtitle', 'es')}</span>
+              </div>
+              <div class="mission-description font-code text-sm text-text-secondary mb-6">
+                <span data-lang="en">{t('business.missions.audit.description', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.audit.description', 'es')}</span>
+              </div>
+            </div>
+
+            <!-- Mission Objectives -->
+            <div class="mission-objectives mb-6">
+              <div class="objectives-title font-pixel text-pixel-xs text-pixel-orange mb-3">
+                <span data-lang="en">MAIN OBJECTIVES:</span>
+                <span data-lang="es" style="display: none;">OBJETIVOS PRINCIPALES:</span>
+              </div>
+              <ul class="objectives-list space-y-2" data-lang="en">
+                {t('business.missions.audit.objectives', 'en').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">🔍</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+              <ul class="objectives-list space-y-2" data-lang="es" style="display: none;">
+                {t('business.missions.audit.objectives', 'es').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">🔍</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Mission Rewards -->
+            <div class="mission-rewards mb-6">
+              <div class="rewards-title font-pixel text-pixel-xs text-gold mb-3">
+                QUEST REWARDS:
+              </div>
+              <div class="rewards-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">📊</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Architecture Report</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🗺️</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Roadmap</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">⚡</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Performance Boost</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🛡️</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Security Fixes</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mission Action -->
+            <div class="mission-action">
+              <button class="mission-accept-btn btn-pixel-secondary w-full" onclick="acceptMission('audit')">
+                <span class="btn-icon">🔍</span>
+                <span class="btn-text">ACCEPT MISSION</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission 2: Team Coaching -->
+        <div class="mission-card slide-in-left" data-mission="coaching" style="animation-delay: 0.2s;">
+          <div class="mission-content pixel-panel p-6">
+            <div class="mission-header flex items-start justify-between mb-4">
+              <div class="mission-rank">
+                <span class="rank-badge rank-a font-pixel text-pixel-xs">RANK A</span>
+              </div>
+              <div class="mission-difficulty">
+                <div class="difficulty-stars">
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star active">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mission-info mb-6">
+              <h3 class="mission-title font-heading text-xl font-bold text-text-primary mb-3">
+                <span data-lang="en">{t('business.missions.coaching.title', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.coaching.title', 'es')}</span>
+              </h3>
+              <div class="mission-subtitle font-code text-sm text-pixel-cyan mb-4">
+                <span data-lang="en">{t('business.missions.coaching.subtitle', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.coaching.subtitle', 'es')}</span>
+              </div>
+              <div class="mission-description font-code text-sm text-text-secondary mb-6">
+                <span data-lang="en">{t('business.missions.coaching.description', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.coaching.description', 'es')}</span>
+              </div>
+            </div>
+
+            <!-- Mission Objectives -->
+            <div class="mission-objectives mb-6">
+              <div class="objectives-title font-pixel text-pixel-xs text-pixel-orange mb-3">
+                <span data-lang="en">MAIN OBJECTIVES:</span>
+                <span data-lang="es" style="display: none;">OBJETIVOS PRINCIPALES:</span>
+              </div>
+              <ul class="objectives-list space-y-2" data-lang="en">
+                {t('business.missions.coaching.objectives', 'en').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">👥</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+              <ul class="objectives-list space-y-2" data-lang="es" style="display: none;">
+                {t('business.missions.coaching.objectives', 'es').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">👥</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Mission Rewards -->
+            <div class="mission-rewards mb-6">
+              <div class="rewards-title font-pixel text-pixel-xs text-gold mb-3">
+                QUEST REWARDS:
+              </div>
+              <div class="rewards-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">👥</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Team Level Up</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">📚</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Knowledge Transfer</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">⚡</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Productivity+</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🎯</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Best Practices</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mission Action -->
+            <div class="mission-action">
+              <button class="mission-accept-btn btn-pixel-secondary w-full" onclick="acceptMission('coaching')">
+                <span class="btn-icon">👥</span>
+                <span class="btn-text">ACCEPT MISSION</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission 3: Technical Leadership -->
+        <div class="mission-card slide-in-left" data-mission="leadership" style="animation-delay: 0.4s;">
+          <div class="mission-content pixel-panel p-6">
+            <div class="mission-header flex items-start justify-between mb-4">
+              <div class="mission-rank">
+                <span class="rank-badge rank-ss font-pixel text-pixel-xs">RANK SS</span>
+              </div>
+              <div class="mission-difficulty">
+                <div class="difficulty-stars">
+                  <span class="star active legendary">★</span>
+                  <span class="star active legendary">★</span>
+                  <span class="star active legendary">★</span>
+                  <span class="star active legendary">★</span>
+                  <span class="star active legendary">★</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mission-info mb-6">
+              <h3 class="mission-title font-heading text-xl font-bold text-text-primary mb-3">
+                <span data-lang="en">{t('business.missions.workshop.title', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.workshop.title', 'es')}</span>
+              </h3>
+              <div class="mission-subtitle font-code text-sm text-pixel-cyan mb-4">
+                <span data-lang="en">{t('business.missions.workshop.subtitle', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.workshop.subtitle', 'es')}</span>
+              </div>
+              <div class="mission-description font-code text-sm text-text-secondary mb-6">
+                <span data-lang="en">{t('business.missions.workshop.description', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('business.missions.workshop.description', 'es')}</span>
+              </div>
+            </div>
+
+            <!-- Mission Objectives -->
+            <div class="mission-objectives mb-6">
+              <div class="objectives-title font-pixel text-pixel-xs text-pixel-orange mb-3">
+                <span data-lang="en">MAIN OBJECTIVES:</span>
+                <span data-lang="es" style="display: none;">OBJETIVOS PRINCIPALES:</span>
+              </div>
+              <ul class="objectives-list space-y-2" data-lang="en">
+                {t('business.missions.workshop.objectives', 'en').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">📚</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+              <ul class="objectives-list space-y-2" data-lang="es" style="display: none;">
+                {t('business.missions.workshop.objectives', 'es').map((objective: string) => (
+                  <li class="objective-item font-code text-xs text-text-secondary">
+                    <span class="objective-icon text-pixel-orange">📚</span>
+                    {objective}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Mission Rewards -->
+            <div class="mission-rewards mb-6">
+              <div class="rewards-title font-pixel text-pixel-xs text-gold mb-3">
+                LEGENDARY REWARDS:
+              </div>
+              <div class="rewards-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">👑</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Leadership</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🚀</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Innovation</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🎖️</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Excellence</div>
+                </div>
+                <div class="reward-item text-center">
+                  <div class="reward-icon text-2xl mb-1">🌟</div>
+                  <div class="reward-text font-code text-xs text-text-secondary">Mastery</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mission Action -->
+            <div class="mission-action">
+              <button class="mission-accept-btn btn-pixel-danger w-full" onclick="acceptMission('leadership')">
+                <span class="btn-icon">👑</span>
+                <span class="btn-text">ACCEPT LEGENDARY MISSION</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guild Contact CTA -->
+      <div class="guild-cta text-center mt-16 fade-in-up">
+        <div class="cta-panel pixel-panel p-8 max-w-2xl mx-auto">
+          <div class="cta-title font-heading text-2xl font-bold text-text-primary mb-4">
+            <span data-lang="en">{t('business.cta', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('business.cta', 'es')}</span>
+          </div>
+          <div class="cta-subtitle font-code text-sm text-text-secondary mb-6">
+            <span data-lang="en">Ready to transform your business with better architecture?</span>
+            <span data-lang="es" style="display: none;">¿Listo para transformar tu negocio con mejor arquitectura?</span>
+          </div>
+          <button class="btn-pixel-main" onclick="scheduleGuildQuest()">
+            <span class="btn-icon">🏰</span>
+            <span class="btn-text" data-lang="en">START GUILD QUEST</span>
+            <span class="btn-text" data-lang="es" style="display: none;">INICIAR QUEST GUILD</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === GUILD HALL BACKGROUND === */
+  .guild-hall-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255, 140, 0, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 3px, transparent 3px),
+      radial-gradient(circle at 50% 20%, rgba(255, 102, 178, 0.05) 1px, transparent 1px);
+    background-size: 120px 120px, 180px 180px, 90px 90px;
+    animation: guildHallFloat 25s ease-in-out infinite;
+  }
+
+  @keyframes guildHallFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-15px, -10px) rotate(0.5deg); }
+    66% { transform: translate(10px, -15px) rotate(-0.5deg); }
+  }
+
+  .floating-banners {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(45deg, transparent 40%, rgba(255, 140, 0, 0.1) 50%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%);
+    background-size: 200px 200px;
+    animation: bannersWave 20s ease-in-out infinite;
+  }
+
+  @keyframes bannersWave {
+    0%, 100% { background-position: 0 0, 0 0; }
+    50% { background-position: 100px 100px, -100px -100px; }
+  }
+
+  .torch-flames {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(ellipse at 10% 10%, rgba(255, 140, 0, 0.2) 8px, transparent 8px),
+      radial-gradient(ellipse at 90% 10%, rgba(255, 140, 0, 0.2) 8px, transparent 8px),
+      radial-gradient(ellipse at 10% 90%, rgba(255, 140, 0, 0.2) 8px, transparent 8px),
+      radial-gradient(ellipse at 90% 90%, rgba(255, 140, 0, 0.2) 8px, transparent 8px);
+    background-size: 100% 100%;
+    animation: torchFlicker 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes torchFlicker {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+
+  /* === GUILD BANNER === */
+  .guild-banner {
+    text-align: center;
+  }
+
+  .banner-content {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.1) 0%,
+      rgba(22, 33, 62, 0.9) 100%
+    );
+    border: 2px solid var(--gold);
+    position: relative;
+  }
+
+  .banner-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .banner-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-genie), transparent);
+  }
+
+  .banner-icon {
+    animation: bannerFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+  }
+
+  @keyframes bannerFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-8px) scale(1.05); }
+  }
+
+  /* === MISSION CARDS === */
+  .mission-card {
+    position: relative;
+  }
+
+  .mission-content {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 46, 0.9) 0%,
+      rgba(22, 33, 62, 0.9) 50%,
+      rgba(16, 33, 78, 0.85) 100%
+    );
+    border: 2px solid var(--pixel-border);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 102, 178, 0.1),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .mission-content:hover::before {
+    left: 100%;
+  }
+
+  .mission-content:hover {
+    transform: translateY(-4px);
+    border-color: var(--pixel-cyan);
+    box-shadow:
+      0 0 30px rgba(0, 212, 170, 0.4),
+      0 8px 32px rgba(0, 212, 170, 0.2),
+      inset 2px 2px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* === RANK BADGES === */
+  .rank-badge {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px currentColor;
+  }
+
+  .rank-s {
+    background: linear-gradient(45deg, var(--pixel-cyan), #00ffff);
+    color: var(--bg-dark);
+    border: 1px solid var(--pixel-cyan);
+  }
+
+  .rank-a {
+    background: linear-gradient(45deg, var(--pixel-green), #00ff00);
+    color: var(--bg-dark);
+    border: 1px solid var(--pixel-green);
+  }
+
+  .rank-ss {
+    background: linear-gradient(45deg, var(--gold), #ffff00);
+    color: var(--bg-dark);
+    border: 1px solid var(--gold);
+    animation: legendaryGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes legendaryGlow {
+    0% { box-shadow: 0 0 10px var(--gold); }
+    100% { box-shadow: 0 0 20px var(--gold), 0 0 30px var(--gold); }
+  }
+
+  /* === DIFFICULTY STARS === */
+  .difficulty-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    color: var(--pixel-border);
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .star.active {
+    color: var(--secondary-yellow);
+    text-shadow: 0 0 8px var(--secondary-yellow);
+  }
+
+  .star.legendary {
+    color: var(--gold);
+    text-shadow: 0 0 8px var(--gold);
+    animation: starTwinkle 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes starTwinkle {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+  }
+
+  /* === MISSION CONTENT === */
+  .mission-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .mission-subtitle {
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .mission-description {
+    line-height: 1.6;
+  }
+
+  /* === OBJECTIVES LIST === */
+  .objectives-list {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--pixel-border);
+    border-radius: 6px;
+    padding: 1rem;
+  }
+
+  .objective-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .objective-icon {
+    margin-top: 2px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  /* === REWARDS GRID === */
+  .rewards-grid {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 6px;
+    padding: 1rem;
+  }
+
+  .reward-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .reward-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .reward-icon {
+    filter: drop-shadow(0 0 10px currentColor);
+    transition: all 0.3s ease;
+  }
+
+  .reward-item:hover .reward-icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+
+  /* === MISSION ACCEPT BUTTON === */
+  .mission-accept-btn {
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Monaco, 'Courier New', monospace;
+    font-weight: bold;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  /* === CTA PANEL === */
+  .cta-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(106, 79, 255, 0.1) 0%,
+      rgba(22, 33, 62, 0.9) 100%
+    );
+    border: 2px solid var(--highlight-purple);
+    position: relative;
+  }
+
+  .cta-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--highlight-purple), transparent);
+  }
+
+  .cta-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-genie), transparent);
+  }
+
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 768px) {
+    .mission-content {
+      padding: 1.5rem;
+    }
+
+    .mission-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mission-title {
+      font-size: 1.5rem;
+    }
+
+    .rewards-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+
+    .cta-panel {
+      padding: 1.5rem;
+      margin: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mission-list {
+      gap: 1.5rem;
+    }
+
+    .mission-content {
+      padding: 1rem;
+    }
+
+    .objectives-list,
+    .rewards-grid {
+      padding: 0.75rem;
+    }
+
+    .cta-panel {
+      padding: 1rem;
+    }
+  }
+
+  /* === ACCESSIBILITY === */
+  @media (prefers-reduced-motion: reduce) {
+    .guild-hall-bg,
+    .floating-banners,
+    .torch-flames,
+    .banner-icon,
+    .rank-ss,
+    .star.legendary {
+      animation: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .mission-content {
+      border-width: 3px;
+    }
+
+    .objectives-list,
+    .rewards-grid {
+      border-width: 2px;
+    }
+  }
+
+  /* Focus indicators */
+  .mission-accept-btn:focus-visible {
+    outline: 3px solid var(--pixel-cyan);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  type MissionType = 'audit' | 'coaching' | 'leadership';
+
+  // === MISSION SYSTEM ===
+  function acceptMission(missionType: MissionType) {
+    // Store mission preference
+    localStorage.setItem('selectedMission', missionType);
+
+    // Show achievement
+    if (window.GentlemanRPG?.showAchievement) {
+      const missionNames: { [key in MissionType]: string } = {
+        audit: 'Architectural Audit',
+        coaching: 'Team Coaching',
+        leadership: 'Technical Leadership'
+      };
+      window.GentlemanRPG.showAchievement('⚔️', 'Mission Accepted!', `Starting: ${missionNames[missionType]}`);
+    }
+
+    // Update player stats
+    updateMissionStats(missionType);
+
+    // Navigate to mission briefing
+    navigateToMissionBriefing(missionType);
+  }
+
+  // === STATS UPDATE ===
+  function updateMissionStats(missionType: MissionType) {
+    const statUpdates: { [key in MissionType]: { xp: number, mp: number, hp: number } } = {
+      audit: { xp: +200, mp: -30, hp: -10 },
+      coaching: { xp: +300, mp: -40, hp: -15 },
+      leadership: { xp: +500, mp: -50, hp: -20 }
+    };
+
+    if (window.playerStats && statUpdates[missionType]) {
+      const updates = statUpdates[missionType];
+      window.playerStats.mp = Math.max(0, window.playerStats.mp + updates.mp);
+      window.playerStats.hp = Math.max(0, window.playerStats.hp + updates.hp);
+      window.playerStats.xp = Math.min(window.playerStats.maxXp, window.playerStats.xp + updates.xp);
+
+      if (window.updatePlayerStats) {
+        window.updatePlayerStats();
+      }
+    }
+  }
+
+  // === NAVIGATION ===
+  function navigateToMissionBriefing(missionType: string) {
+    // This would typically show a detailed mission briefing
+    console.log(`📋 Opening mission briefing for: ${missionType}`);
+
+    // For now, scroll to CTA section
+    const ctaSection = document.querySelector('.guild-contact-cta');
+    if (ctaSection) {
+      ctaSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function contactGuildMaster() {
+    // Show dialog with guild master contact
+    if (window.GentlemanRPG?.showDialog) {
+      window.GentlemanRPG.showDialog(
+        "Greetings, adventurer! Ready to embark on an epic business transformation quest? Let's discuss your guild's needs and objectives."
+      );
+    }
+  }
+
+  // === MISSION BOARD ANIMATIONS ===
+  function initializeMissionBoard() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate mission cards sequentially
+          const missionCards = entry.target.querySelectorAll<HTMLElement>('.mission-card');
+          missionCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.style.animation = `slide-in-left 0.6s ease-out forwards`;
+            }, index * 150);
+          });
+
+          // Show mission board achievement
+          setTimeout(() => {
+            if (window.GentlemanRPG?.showAchievement) {
+              window.GentlemanRPG.showAchievement('🏰', 'Mission Board Unlocked!', 'Epic guild quests await your team');
+            }
+          }, 1500);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const missionBoard = document.querySelector('.mission-board-container');
+    if (missionBoard) {
+      observer.observe(missionBoard);
+    }
+  }
+
+  // === KEYBOARD NAVIGATION ===
+  function initializeKeyboardNavigation() {
+    const missionButtons = document.querySelectorAll<HTMLElement>('.mission-accept-btn');
+
+    missionButtons.forEach((button, index) => {
+      button.addEventListener('keydown', (e: KeyboardEvent) => {
+        switch(e.key) {
+          case 'ArrowRight':
+            e.preventDefault();
+            const nextButton = missionButtons[index + 1] || missionButtons[0];
+            nextButton.focus();
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            const prevButton = missionButtons[index - 1] || missionButtons[missionButtons.length - 1];
+            prevButton.focus();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            missionButtons[0].focus();
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            missionButtons[missionButtons.length - 1].focus();
+            break;
+        }
+      });
+    });
+  }
+
+  // === REWARD TOOLTIPS ===
+  function initializeRewardTooltips() {
+    const rewardItems = document.querySelectorAll<HTMLElement>('.reward-item');
+
+    rewardItems.forEach(item => {
+      item.addEventListener('mouseenter', function(this: HTMLElement) {
+        const rewardText = this.querySelector('.reward-text')?.textContent;
+        // Could implement tooltip system here
+        console.log(`💎 Reward: ${rewardText}`);
+      });
+    });
+  }
+
+  // === INITIALIZATION ===
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeMissionBoard();
+    initializeKeyboardNavigation();
+    initializeRewardTooltips();
+
+    // Check for saved mission preference
+    const savedMission = localStorage.getItem('selectedMission');
+    if (savedMission) {
+      const missionCard = document.querySelector<HTMLElement>(`[data-mission="${savedMission}"] .mission-content`);
+      if (missionCard) {
+        missionCard.style.border = '2px solid var(--gold)';
+        missionCard.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.4)';
+      }
+    }
+
+    // Add global functions
+    window.acceptMission = acceptMission as (missionType: string) => void;
+    window.contactGuildMaster = contactGuildMaster;
+  });
+
+  // === PERFORMANCE OPTIMIZATION ===
+  // Preload mission animations during idle time
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      // Preload any mission-related assets
+      const missionCards = document.querySelectorAll<HTMLElement>('.mission-content');
+      missionCards.forEach(card => {
+        card.style.willChange = 'transform';
+      });
+    });
+  }
+</script>

@@ -1,0 +1,33 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-json",
+    "yzhang.markdown-all-in-one",
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode-remote.remote-containers",
+    "ms-vscode.live-server",
+    "ritwickdey.liveserver",
+    "ms-playwright.playwright",
+    "usernamehw.errorlens",
+    "gruntfuggly.todo-tree",
+    "oderwat.indent-rainbow",
+    "aaron-bond.better-comments",
+    "johnpapa.vscode-peacock",
+    "pkief.material-icon-theme",
+    "github.copilot",
+    "ms-vscode.hexeditor",
+    "formulahendry.code-runner",
+    "ms-vscode.vscode-github-issue-notebooks",
+    "github.vscode-pull-request-github"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-css-languageservice",
+    "hookyqr.beautify"
+  ]
+}

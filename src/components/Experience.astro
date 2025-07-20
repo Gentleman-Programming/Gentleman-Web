@@ -1,0 +1,1001 @@
+---
+// Experience - Nivel 6: Hall of Fame con trayectoria y stats animados
+import { t } from '../i18n/index.ts';
+---
+
+<section id="experience" class="min-h-screen py-20 relative overflow-hidden">
+  <!-- Hall Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="hall-bg"></div>
+    <div class="trophy-lights"></div>
+    <div class="floating-achievements"></div>
+  </div>
+
+  <!-- Section Header -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16 animate-on-scroll">
+      <div class="section-subtitle text-pixel-cyan text-pixel-sm mb-4">
+        <span class="blinking-cursor">►</span>
+        <span data-lang="en">{t('experience.subtitle', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('experience.subtitle', 'es')}</span>
+      </div>
+      <h2 class="section-title text-pixel-3xl md:text-5xl font-bold text-pixel-white mb-6">
+        <span data-lang="en">{t('experience.title', 'en').split(' ')[0]} <span class="text-pixel-gold glow-text">{t('experience.title', 'en').split(' ').slice(-1)[0]}</span></span>
+        <span data-lang="es" style="display: none;">{t('experience.title', 'es').split(' ')[0]} <span class="text-pixel-gold glow-text">{t('experience.title', 'es').split(' ').slice(-1)[0]}</span></span>
+      </h2>
+      <div class="section-description text-pixel-lg text-pixel-gray max-w-2xl mx-auto">
+        <span data-lang="en">{t('experience.description', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('experience.description', 'es')}</span>
+      </div>
+    </div>
+
+    <!-- Main Stats Dashboard -->
+    <div class="stats-dashboard max-w-6xl mx-auto mb-16">
+      <div class="dashboard-grid">
+
+        <!-- Main Achievement Stats -->
+        <div class="main-stats animate-on-scroll">
+          <div class="stats-header">
+            <h3 class="stats-title text-pixel-xl font-bold text-gold mb-4">
+              <span data-lang="en">{t('experience.stats.title', 'en')}</span>
+              <span data-lang="es" style="display: none;">{t('experience.stats.title', 'es')}</span>
+            </h3>
+          </div>
+
+          <div class="stats-container">
+            <!-- Quest Counter -->
+            <div class="stat-block" data-stat="quests">
+              <div class="stat-icon">
+                <div class="icon-quest"></div>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-target="50" data-suffix="+">0</div>
+                <div class="stat-label">
+                  <span data-lang="en">{t('experience.stats.quests', 'en')}</span>
+                  <span data-lang="es" style="display: none;">{t('experience.stats.quests', 'es')}</span>
+                </div>
+                <div class="stat-sublabel">
+                  <span data-lang="en">Conferences & Talks</span>
+                  <span data-lang="es" style="display: none;">Conferencias & Charlas</span>
+                </div>
+              </div>
+              <div class="stat-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="95%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- YouTube XP -->
+            <div class="stat-block" data-stat="youtube">
+              <div class="stat-icon">
+                <div class="icon-youtube"></div>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-target="85" data-suffix="K+">0</div>
+                <div class="stat-label">{t('experience.stats.youtube', "en")}</div>
+                <div class="stat-sublabel">Suscriptores</div>
+              </div>
+              <div class="stat-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="88%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Twitch XP -->
+            <div class="stat-block" data-stat="twitch">
+              <div class="stat-icon">
+                <div class="icon-twitch"></div>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-target="15.2" data-suffix="K+">0</div>
+                <div class="stat-label">{t('experience.stats.twitch', "en")}</div>
+                <div class="stat-sublabel">Twitch</div>
+              </div>
+              <div class="stat-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="75%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discord Guild -->
+            <div class="stat-block" data-stat="discord">
+              <div class="stat-icon">
+                <div class="icon-discord"></div>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-target="9.3" data-suffix="K+">0</div>
+                <div class="stat-label">GUILD MEMBERS</div>
+                <div class="stat-sublabel">Discord Community</div>
+              </div>
+              <div class="stat-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="92%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievement Badges -->
+        <div class="achievement-badges animate-on-scroll">
+          <div class="badges-header">
+            <h3 class="badges-title text-pixel-xl font-bold text-pixel-cyan mb-4">
+              🏆 LEGENDARY BADGES
+            </h3>
+          </div>
+
+          <div class="badges-grid">
+            <!-- GDE Badge -->
+            <div class="badge-item" data-badge="gde">
+              <div class="badge-icon">
+                <div class="gde-badge"></div>
+              </div>
+              <div class="badge-info">
+                <div class="badge-name">GOOGLE DEVELOPER EXPERT</div>
+                <div class="badge-category">Web Technologies</div>
+                <div class="badge-year">2020 - Present</div>
+              </div>
+              <div class="badge-rarity legendary">LEGENDARY</div>
+            </div>
+
+            <!-- MVP Badge -->
+            <div class="badge-item" data-badge="mvp">
+              <div class="badge-icon">
+                <div class="mvp-badge"></div>
+              </div>
+              <div class="badge-info">
+                <div class="badge-name">MICROSOFT MVP</div>
+                <div class="badge-category">Developer Technologies</div>
+                <div class="badge-year">2021 - Present</div>
+              </div>
+              <div class="badge-rarity mythic">MYTHIC</div>
+            </div>
+
+            <!-- Speaker Badge -->
+            <div class="badge-item" data-badge="speaker">
+              <div class="badge-icon">
+                <div class="speaker-badge"></div>
+              </div>
+              <div class="badge-info">
+                <div class="badge-name">INTERNATIONAL SPEAKER</div>
+                <div class="badge-category">50+ Conferences</div>
+                <div class="badge-year">2018 - Present</div>
+              </div>
+              <div class="badge-rarity epic">EPIC</div>
+            </div>
+
+            <!-- Author Badge -->
+            <div class="badge-item" data-badge="author">
+              <div class="badge-icon">
+                <div class="author-badge"></div>
+              </div>
+              <div class="badge-info">
+                <div class="badge-name">TECH AUTHOR</div>
+                <div class="badge-category">"Cómo ser front-end"</div>
+                <div class="badge-year">2022</div>
+              </div>
+              <div class="badge-rarity rare">RARE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learning Philosophy -->
+    <div class="learning-philosophy-container animate-on-scroll">
+      <div class="philosophy-header text-center mb-8">
+        <h3 class="philosophy-title text-pixel-xl font-bold text-pixel-green">
+          🧠 LEARNING PHILOSOPHY
+        </h3>
+        <div class="philosophy-subtitle text-pixel-base text-pixel-gray">
+          I don't know everything, but I can learn anything
+        </div>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-item">
+          <div class="philosophy-icon">🔍</div>
+          <div class="philosophy-title">Research First</div>
+          <div class="philosophy-description">I thoroughly investigate what you need before our session</div>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">🎯</div>
+          <div class="philosophy-title">Customized Learning</div>
+          <div class="philosophy-description">Every mentoring session is tailored to your specific challenges</div>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">💡</div>
+          <div class="philosophy-title">Practical Solutions</div>
+          <div class="philosophy-description">Real-world examples and hands-on problem solving</div>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">🚀</div>
+          <div class="philosophy-title">Growth Mindset</div>
+          <div class="philosophy-description">We learn together - no challenge is too complex</div>
+        </div>
+      </div>
+
+      <div class="approach-banner">
+        <div class="banner-text">
+          "Tell me what you need to learn, and I'll master it to teach you better"
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline of Achievements -->
+    <div class="achievements-timeline animate-on-scroll">
+      <div class="timeline-header text-center mb-12">
+        <h3 class="timeline-title text-pixel-xl font-bold text-pixel-purple">
+          📈 JOURNEY MILESTONES
+        </h3>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="milestone" data-year="2018">
+          <div class="milestone-marker"></div>
+          <div class="milestone-content">
+            <div class="milestone-year">2018</div>
+            <div class="milestone-title">{t('experience.timeline.milestones.2018.title', "en")}</div>
+            <div class="milestone-description">{t('experience.timeline.milestones.2018.description', "en")}</div>
+            <div class="milestone-impact">{t('experience.timeline.milestones.2018.impact', "en")}</div>
+          </div>
+        </div>
+
+        <div class="milestone" data-year="2020">
+          <div class="milestone-marker"></div>
+          <div class="milestone-content">
+            <div class="milestone-year">2020</div>
+            <div class="milestone-title">{t('experience.timeline.milestones.2020.title', "en")}</div>
+            <div class="milestone-description">{t('experience.timeline.milestones.2020.description', "en")}</div>
+            <div class="milestone-impact">{t('experience.timeline.milestones.2020.impact', "en")}</div>
+          </div>
+        </div>
+
+        <div class="milestone" data-year="2021">
+          <div class="milestone-marker"></div>
+          <div class="milestone-content">
+            <div class="milestone-year">2021</div>
+            <div class="milestone-title">{t('experience.timeline.milestones.2021.title', "en")}</div>
+            <div class="milestone-description">{t('experience.timeline.milestones.2021.description', "en")}</div>
+            <div class="milestone-impact">{t('experience.timeline.milestones.2021.impact', "en")}</div>
+          </div>
+        </div>
+
+        <div class="milestone" data-year="2022">
+          <div class="milestone-marker"></div>
+          <div class="milestone-content">
+            <div class="milestone-year">2022</div>
+            <div class="milestone-title">{t('experience.timeline.milestones.2022.title', "en")}</div>
+            <div class="milestone-description">{t('experience.timeline.milestones.2022.description', "en")}</div>
+            <div class="milestone-impact">{t('experience.timeline.milestones.2022.impact', "en")}</div>
+          </div>
+        </div>
+
+        <div class="milestone" data-year="2024">
+          <div class="milestone-marker active"></div>
+          <div class="milestone-content">
+            <div class="milestone-year">2024</div>
+            <div class="milestone-title">{t('experience.timeline.milestones.2024.title', "en")}</div>
+            <div class="milestone-description">{t('experience.timeline.milestones.2024.description', "en")}</div>
+            <div class="milestone-impact">{t('experience.timeline.milestones.2024.impact', "en")}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hall Background */
+  .hall-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(255, 215, 0, 0.05) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255, 215, 0, 0.05) 25%, transparent 25%),
+      radial-gradient(circle at 25% 25%, rgba(255, 140, 0, 0.1) 20%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 69, 0, 0.1) 20%, transparent 50%);
+    background-size: 50px 50px, 50px 50px, 200px 200px, 300px 300px;
+    animation: hallGrandeur 30s linear infinite;
+  }
+
+  @keyframes hallGrandeur {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(1deg); }
+  }
+
+  /* Trophy Lights */
+  .trophy-lights {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.4) 2px, transparent 2px),
+      radial-gradient(circle at 80% 30%, rgba(255, 140, 0, 0.4) 3px, transparent 3px),
+      radial-gradient(circle at 40% 80%, rgba(255, 69, 0, 0.4) 2px, transparent 2px);
+    background-size: 150px 150px, 200px 200px, 180px 180px;
+    animation: trophyShine 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes trophyShine {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  /* Stats Dashboard */
+  .stats-dashboard {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+    border: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    box-shadow:
+      0 0 30px rgba(255, 215, 0, 0.3),
+      inset 0 0 30px rgba(255, 215, 0, 0.1);
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+
+  /* Main Stats */
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-block {
+    background: rgba(22, 33, 62, 0.8);
+    border: 2px solid var(--pixel-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .stat-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .stat-block:hover::before {
+    left: 100%;
+  }
+
+  .stat-block:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+
+  /* Stat Icons (CSS Art) */
+  .icon-quest {
+    background:
+      linear-gradient(45deg, var(--gold) 40%, transparent 60%),
+      linear-gradient(-45deg, var(--gold) 40%, transparent 60%),
+      radial-gradient(circle at center, var(--pixel-orange) 30%, transparent 40%);
+    background-size: 40px 40px, 40px 40px, 20px 20px;
+    background-position: center;
+  }
+
+  .icon-youtube {
+    background: linear-gradient(45deg, #ff0000 0%, #cc0000 100%);
+    clip-path: polygon(20% 20%, 20% 80%, 80% 50%);
+    border-radius: 8px;
+  }
+
+  .icon-twitch {
+    background: linear-gradient(45deg, #9146ff 0%, #772ce8 100%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
+  .icon-discord {
+    background: linear-gradient(45deg, #5865f2 0%, #4752c4 100%);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .icon-discord::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--pixel-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-sublabel {
+    font-size: 0.7rem;
+    color: var(--pixel-gray);
+  }
+
+  .stat-progress {
+    margin-top: 1rem;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--pixel-dark);
+    border: 1px solid var(--pixel-border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), #ffed4e);
+    width: 0%;
+    transition: width 2s ease-out;
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent, rgba(255, 255, 255, 0.3));
+    animation: progressShine 2s ease-in-out infinite;
+  }
+
+  @keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Achievement Badges */
+  .achievement-badges {
+    background: rgba(22, 33, 62, 0.5);
+    border: 2px solid var(--pixel-cyan);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .badges-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .badge-item {
+    background: rgba(26, 26, 46, 0.8);
+    border: 1px solid var(--pixel-border);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .badge-item:hover {
+    border-color: var(--pixel-cyan);
+    background: rgba(0, 212, 170, 0.1);
+    transform: scale(1.02);
+  }
+
+  .badge-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  /* Badge Icons */
+  .gde-badge {
+    background: linear-gradient(45deg, #4285f4 0%, #34a853 25%, #fbbc05 50%, #ea4335 75%);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .gde-badge::after {
+    content: 'G';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .mvp-badge {
+    background: linear-gradient(45deg, #0078d4 0%, #106ebe 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    position: relative;
+  }
+
+  .speaker-badge {
+    background: linear-gradient(45deg, var(--pixel-purple) 0%, #9370db 100%);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .speaker-badge::after {
+    content: '🎤';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+  }
+
+  .author-badge {
+    background: linear-gradient(45deg, #8b4513 0%, #d2691e 100%);
+    border-radius: 20%;
+    position: relative;
+  }
+
+  .author-badge::after {
+    content: '📖';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+  }
+
+  .badge-info {
+    flex: 1;
+  }
+
+  .badge-name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--pixel-cyan);
+    margin-bottom: 0.25rem;
+  }
+
+  .badge-category {
+    font-size: 0.7rem;
+    color: var(--pixel-gray);
+    margin-bottom: 0.25rem;
+  }
+
+  .badge-year {
+    font-size: 0.6rem;
+    color: var(--pixel-gray);
+  }
+
+  .badge-rarity {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .legendary { background: linear-gradient(45deg, #ff4500, #ffa500); color: white; }
+  .mythic { background: linear-gradient(45deg, #00ced1, #20b2aa); color: white; }
+  .epic { background: linear-gradient(45deg, #9370db, #ba55d3); color: white; }
+  .rare { background: linear-gradient(45deg, #32cd32, #90ee90); color: var(--pixel-dark); }
+
+  /* Learning Philosophy */
+  .learning-philosophy-container {
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid var(--pixel-green);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-item {
+    background: rgba(22, 33, 62, 0.5);
+    border: 1px solid var(--pixel-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .philosophy-item:hover {
+    border-color: var(--pixel-green);
+    background: rgba(0, 255, 65, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .philosophy-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .philosophy-item .philosophy-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--pixel-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .philosophy-description {
+    font-size: 0.9rem;
+    color: var(--pixel-gray);
+    line-height: 1.4;
+  }
+
+  .approach-banner {
+    background: linear-gradient(45deg, rgba(0, 255, 65, 0.1), rgba(0, 212, 170, 0.1));
+    border: 2px solid var(--pixel-green);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .banner-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--pixel-green);
+    font-style: italic;
+  }
+
+  /* Timeline */
+  .achievements-timeline {
+    background: rgba(26, 26, 46, 0.6);
+    border: 2px solid var(--pixel-purple);
+    border-radius: 8px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--pixel-purple), var(--pixel-pink));
+    transform: translateX(-50%);
+  }
+
+  .milestone {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .milestone:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .milestone:nth-child(even) .milestone-content {
+    text-align: right;
+  }
+
+  .milestone-marker {
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--pixel-purple);
+    border: 3px solid var(--pixel-white);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: milestoneGlow 2s ease-in-out infinite alternate;
+  }
+
+  .milestone-marker.active {
+    background: var(--gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+
+  @keyframes milestoneGlow {
+    0% { box-shadow: 0 0 10px var(--pixel-purple); }
+    100% { box-shadow: 0 0 20px var(--pixel-purple); }
+  }
+
+  .milestone-content {
+    flex: 1;
+    background: rgba(22, 33, 62, 0.8);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--pixel-border);
+    margin: 0 2rem;
+    max-width: 300px;
+  }
+
+  .milestone-year {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .milestone-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--pixel-purple);
+    margin-bottom: 0.5rem;
+  }
+
+  .milestone-description {
+    font-size: 0.9rem;
+    color: var(--pixel-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  .milestone-impact {
+    font-size: 0.8rem;
+    color: var(--pixel-cyan);
+    font-style: italic;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stats-container {
+      grid-template-columns: 1fr;
+    }
+
+    .badges-grid {
+      gap: 0.5rem;
+    }
+
+    .badge-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .philosophy-item {
+      padding: 1rem;
+    }
+
+    .timeline-line {
+      left: 20px;
+    }
+
+    .milestone {
+      flex-direction: row !important;
+      padding-left: 3rem;
+    }
+
+    .milestone-marker {
+      left: 20px;
+      transform: translateX(-50%);
+    }
+
+    .milestone-content {
+      text-align: left !important;
+      margin: 0;
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  // Animated Counter Function
+  function animateCounter(element: HTMLElement, target: number, duration = 2000, suffix = '') {
+    const start = 0;
+    const startTime = performance.now();
+
+    function updateCounter(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(start + (target - start) * easeOut);
+
+      element.textContent = current + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  // Animate Progress Bars
+  function animateProgressBar(element: HTMLElement, targetWidth: string | undefined) {
+    setTimeout(() => {
+      element.style.width = targetWidth || '0%';
+    }, 300);
+  }
+
+  // Intersection Observer for Stats Animation
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statBlocks = entry.target.querySelectorAll<HTMLElement>('.stat-block');
+
+        statBlocks.forEach((block, index) => {
+          setTimeout(() => {
+            // Animate counter
+            const valueElement = block.querySelector<HTMLElement>('.stat-value');
+            if (valueElement) {
+              const target = parseInt((valueElement as HTMLElement)?.dataset.target || '0');
+              const suffix = (valueElement as HTMLElement)?.dataset.suffix || '';
+              animateCounter(valueElement, target, 2000, suffix);
+            }
+
+            // Animate progress bar
+            const progressFill = block.querySelector<HTMLElement>('.progress-fill');
+            if (progressFill) {
+              const targetWidth = (progressFill as HTMLElement)?.dataset.width;
+              animateProgressBar(progressFill, targetWidth);
+            }
+
+            // Add entrance animation
+            (block as HTMLElement).style.animation = 'pixelFadeIn 0.6s ease-out forwards';
+          }, index * 300);
+        });
+
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  // Philosophy Item Hover Effects
+  function addPhilosophyHoverEffects() {
+    document.querySelectorAll<HTMLElement>('.philosophy-item').forEach(item => {
+      item.addEventListener('mouseenter', function(this: HTMLElement) {
+        console.log('🔊 Philosophy hover sound');
+        // Add subtle glow effect
+        (this as HTMLElement).style.boxShadow = '0 0 15px rgba(0, 255, 65, 0.5)';
+      });
+
+      item.addEventListener('mouseleave', function(this: HTMLElement) {
+        (this as HTMLElement).style.boxShadow = '';
+      });
+
+      item.addEventListener('click', function(this: HTMLElement) {
+        console.log('🔊 Philosophy click sound');
+        // Add click animation
+        (this as HTMLElement).style.animation = 'pixelShake 0.3s ease-in-out';
+        setTimeout(() => {
+          (this as HTMLElement).style.animation = '';
+        }, 300);
+      });
+    });
+  }
+
+  // Badge Click Effects
+  function addBadgeEffects() {
+    document.querySelectorAll<HTMLElement>('.badge-item').forEach(badge => {
+      badge.addEventListener('click', function(this: HTMLElement) {
+        const badgeType = (this as HTMLElement).dataset.badge;
+        console.log(`🏆 Badge clicked: ${badgeType}`);
+
+        // Add badge shine effect
+        (this as HTMLElement).style.animation = 'pixelGlow 0.8s ease-in-out';
+        setTimeout(() => {
+          (this as HTMLElement).style.animation = '';
+        }, 800);
+      });
+    });
+  }
+
+  // Timeline Animation
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const milestones = entry.target.querySelectorAll<HTMLElement>('.milestone');
+
+        milestones.forEach((milestone, index) => {
+          setTimeout(() => {
+            (milestone as HTMLElement).style.animation = 'pixelSlideIn 0.8s ease-out forwards';
+          }, index * 400);
+        });
+
+        timelineObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', function() {
+    // Observe stats dashboard
+    const statsDashboard = document.querySelector('.stats-dashboard');
+    if (statsDashboard) {
+      statsObserver.observe(statsDashboard);
+    }
+
+    // Observe timeline
+    const timeline = document.querySelector('.achievements-timeline');
+    if (timeline) {
+      timelineObserver.observe(timeline);
+    }
+
+    // Add interactive effects
+    addPhilosophyHoverEffects();
+    addBadgeEffects();
+
+    // Animate philosophy items on scroll
+    const philosophyObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, itemIndex) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            (entry.target as HTMLElement).style.animation = 'pixelFadeIn 0.6s ease-out forwards';
+          }, itemIndex * 200);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll<HTMLElement>('.philosophy-item').forEach(item => {
+      philosophyObserver.observe(item);
+    });
+
+    // Keyboard shortcuts for fun
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'g') {
+        e.preventDefault();
+        console.log('🎮 God mode activated! All stats maxed!');
+
+        // Flash effect
+        document.body.style.animation = 'pixelGlow 0.5s ease-in-out';
+        setTimeout(() => {
+          document.body.style.animation = '';
+        }, 500);
+      }
+    });
+  });
+</script>

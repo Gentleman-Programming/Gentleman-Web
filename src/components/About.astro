@@ -1,0 +1,990 @@
+---
+// About - Nivel 4: NPC About con dialog box estilo SNES e i18n
+import { t } from '../i18n/index.ts';
+---
+
+<section id="about" class="min-h-screen py-20 relative overflow-hidden bg-bg-dark">
+  <!-- Tavern Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="starfield"></div>
+    <div class="pixel-grid"></div>
+    <div class="tavern-bg"></div>
+    <div class="tavern-lights"></div>
+    <div class="floating-smoke"></div>
+    <div class="geometric-bg opacity-10"></div>
+  </div>
+
+  <!-- Section Header -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16 fade-in-up">
+      <div class="section-subtitle font-code text-sm text-pixel-cyan mb-4">
+        <span class="blinking-cursor animate-pixel-blink">►</span>
+        <span data-lang="en">{t('about.subtitle', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('about.subtitle', 'es')}</span>
+      </div>
+      <h2 class="section-title font-heading text-4xl md:text-6xl font-bold text-text-primary mb-6">
+        <span data-lang="en">{t('about.title', 'en')} <span class="text-pixel-green text-glow-green">{t('about.title', 'en').split(' ')[2] || 'TAVERN'}</span></span>
+        <span data-lang="es" style="display: none;">{t('about.title', 'es')} <span class="text-pixel-green text-glow-green">{t('about.title', 'es').split(' ')[2] || 'TAVERN'}</span></span>
+      </h2>
+      <div class="section-description font-code text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+        <span data-lang="en">{t('about.description', 'en')}</span>
+        <span data-lang="es" style="display: none;">{t('about.description', 'es')}</span>
+      </div>
+    </div>
+
+    <!-- Main NPC Dialog Container -->
+    <div class="npc-container max-w-6xl mx-auto">
+      <!-- NPC Dialog Box -->
+      <div class="npc-dialog-box scale-in">
+        <!-- Dialog Header -->
+        <div class="dialog-header pixel-panel p-4 mb-6">
+          <div class="flex items-center justify-between">
+            <div class="npc-info">
+              <div class="npc-name font-heading text-xl font-bold text-primary-genie">
+                <span data-lang="en">{t('about.dialog.name', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('about.dialog.name', 'es')}</span>
+              </div>
+              <div class="npc-level font-pixel text-pixel-xs text-secondary-yellow">
+                <span data-lang="en">{t('about.dialog.level', 'en')} • CLASS: ARCHITECTURE WIZARD</span>
+                <span data-lang="es" style="display: none;">{t('about.dialog.level', 'es')} • CLASE: MAGO DE ARQUITECTURA</span>
+              </div>
+            </div>
+            <div class="npc-status">
+              <div class="status-indicator font-pixel text-pixel-xs text-pixel-green">
+                <span data-lang="en">{t('about.stats.status', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('about.stats.status', 'es')}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Dialog Content -->
+        <div class="dialog-content grid lg:grid-cols-2 gap-8">
+          <!-- NPC Avatar Section -->
+          <div class="npc-avatar-section">
+            <div class="npc-avatar-container relative">
+              <!-- Gentleman Avatar -->
+              <div class="npc-avatar mb-6">
+                <div class="gentleman-avatar-large animate-pixel-float"></div>
+                <div class="avatar-glow"></div>
+                <div class="speech-indicator">
+                  <div class="indicator-dot animate-pixel-blink"></div>
+                  <div class="indicator-dot animate-pixel-blink" style="animation-delay: 0.5s;"></div>
+                  <div class="indicator-dot animate-pixel-blink" style="animation-delay: 1s;"></div>
+                </div>
+              </div>
+
+              <!-- NPC Stats Panel -->
+              <div class="npc-stats pixel-panel p-4">
+                <div class="stats-title font-pixel text-pixel-xs text-pixel-cyan mb-3">
+                  <span data-lang="en">{t('about.stats.title', 'en')}</span>
+                  <span data-lang="es" style="display: none;">{t('about.stats.title', 'es')}</span>
+                </div>
+
+                <!-- Experience Bar -->
+                <div class="stat-row mb-3">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-code text-xs text-text-secondary" data-lang="en">{t('about.stats.experience', 'en')}</span>
+                    <span class="font-code text-xs text-text-secondary" data-lang="es" style="display: none;">{t('about.stats.experience', 'es')}</span>
+                    <span class="font-code text-xs text-secondary-yellow" data-lang="en">{t('about.stats.experienceValue', 'en')}</span>
+                    <span class="font-code text-xs text-secondary-yellow" data-lang="es" style="display: none;">{t('about.stats.experienceValue', 'es')}</span>
+                  </div>
+                  <div class="stat-bar">
+                    <div class="stat-bar-fill xp-bar" style="width: 100%"></div>
+                  </div>
+                </div>
+
+                <!-- Knowledge Bar -->
+                <div class="stat-row mb-3">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-code text-xs text-text-secondary" data-lang="en">{t('about.stats.knowledge', 'en')}</span>
+                    <span class="font-code text-xs text-text-secondary" data-lang="es" style="display: none;">{t('about.stats.knowledge', 'es')}</span>
+                    <span class="font-code text-xs text-pixel-cyan" data-lang="en">{t('about.stats.knowledgeValue', 'en')}</span>
+                    <span class="font-code text-xs text-pixel-cyan" data-lang="es" style="display: none;">{t('about.stats.knowledgeValue', 'es')}</span>
+                  </div>
+                  <div class="stat-bar">
+                    <div class="stat-bar-fill mp-bar" style="width: 100%"></div>
+                  </div>
+                </div>
+
+                <!-- Teaching Bar -->
+                <div class="stat-row">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-code text-xs text-text-secondary" data-lang="en">{t('about.stats.teaching', 'en')}</span>
+                    <span class="font-code text-xs text-text-secondary" data-lang="es" style="display: none;">{t('about.stats.teaching', 'es')}</span>
+                    <span class="font-code text-xs text-pixel-green" data-lang="en">{t('about.stats.teachingValue', 'en')}</span>
+                    <span class="font-code text-xs text-pixel-green" data-lang="es" style="display: none;">{t('about.stats.teachingValue', 'es')}</span>
+                  </div>
+                  <div class="stat-bar">
+                    <div class="stat-bar-fill hp-bar" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dialog Text Section -->
+          <div class="dialog-text-section" style="pointer-events: auto;">
+            <!-- Main Dialog -->
+            <div class="main-dialog pixel-panel p-6 mb-6" style="pointer-events: auto;">
+              <div class="dialog-text font-code text-base text-text-primary mb-4">
+                <div class="typing-effect">
+                  <span data-lang="en">{t('about.dialog.greeting', 'en')}</span>
+                  <span data-lang="es" style="display: none;">{t('about.dialog.greeting', 'es')}</span>
+                </div>
+              </div>
+
+              <div class="dialog-continue" style="pointer-events: auto;">
+                <button class="continue-btn font-code text-sm text-pixel-cyan hover:text-primary-genie transition-colors" onclick="showNextDialog()" style="pointer-events: auto;">
+                  <span class="mr-2">▶</span>
+                  <span data-lang="en">{t('about.dialog.continue', 'en')}</span>
+                  <span data-lang="es" style="display: none;">{t('about.dialog.continue', 'es')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Journey Milestones -->
+            <div class="journey-milestones pixel-panel p-6" style="pointer-events: auto;">
+              <div class="milestones-title font-heading text-xl font-bold text-text-primary mb-4">
+                <span class="text-secondary-yellow">🗺️</span>
+                <span data-lang="en">{t('about.milestones.title', 'en')}</span>
+                <span data-lang="es" style="display: none;">{t('about.milestones.title', 'es')}</span>
+              </div>
+
+              <div class="milestone-list space-y-4" data-lang="en">
+                {t('about.milestones.list', 'en').map((milestone: any, index: number) => (
+                  <div class="milestone-item slide-in-left" style={`animation-delay: ${index * 0.2}s;`}>
+                    <div class="milestone-year font-pixel text-pixel-xs text-secondary-yellow">
+                      {milestone.year}
+                    </div>
+                    <div class="milestone-content">
+                      <div class="milestone-title font-code text-sm font-bold text-text-primary">
+                        {milestone.title}
+                      </div>
+                      <div class="milestone-description font-code text-xs text-text-secondary">
+                        {milestone.description}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="milestone-list space-y-4" data-lang="es" style="display: none;">
+                {t('about.milestones.list', 'es').map((milestone: any, index: number) => (
+                  <div class="milestone-item slide-in-left" style={`animation-delay: ${index * 0.2}s;`}>
+                    <div class="milestone-year font-pixel text-pixel-xs text-secondary-yellow">
+                      {milestone.year}
+                    </div>
+                    <div class="milestone-content">
+                      <div class="milestone-title font-code text-sm font-bold text-text-primary">
+                        {milestone.title}
+                      </div>
+                      <div class="milestone-description font-code text-xs text-text-secondary">
+                        {milestone.description}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills & Specializations -->
+        <div class="skills-section mt-8">
+          <div class="skills-title font-heading text-xl font-bold text-text-primary mb-6 text-center">
+            <span class="text-pixel-green">⚔️</span>
+            <span data-lang="en">{t('about.skills.title', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('about.skills.title', 'es')}</span>
+          </div>
+
+          <div class="skills-grid grid grid-cols-2 md:grid-cols-4 gap-4" data-lang="en">
+            {t('about.skills.list', 'en').map((skill: any, index: number) => (
+              <div class="skill-badge scale-in" style={`animation-delay: ${index * 0.1}s;`}>
+                <div class="skill-icon text-2xl mb-2">{skill.icon}</div>
+                <div class="skill-name font-code text-xs text-text-primary">{skill.name}</div>
+                <div class="skill-level font-pixel text-pixel-xs text-secondary-yellow">{skill.level}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="skills-grid grid grid-cols-2 md:grid-cols-4 gap-4" data-lang="es" style="display: none;">
+            {t('about.skills.list', 'es').map((skill: any, index: number) => (
+              <div class="skill-badge scale-in" style={`animation-delay: ${index * 0.1}s;`}>
+                <div class="skill-icon text-2xl mb-2">{skill.icon}</div>
+                <div class="skill-name font-code text-xs text-text-primary">{skill.name}</div>
+                <div class="skill-level font-pixel text-pixel-xs text-secondary-yellow">{skill.level}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="contact-options mt-8 text-center" style="pointer-events: auto;">
+          <div class="contact-title font-heading text-xl font-bold text-text-primary mb-6">
+            <span data-lang="en">{t('about.contact.title', 'en')}</span>
+            <span data-lang="es" style="display: none;">{t('about.contact.title', 'es')}</span>
+          </div>
+
+          <div class="contact-buttons flex flex-wrap justify-center gap-4">
+            <button class="contact-btn btn-pixel-secondary" onclick="openContact('youtube')">
+              <span class="btn-icon">📺</span>
+              <span class="btn-text" data-lang="en">{t('about.contact.buttons.youtube', 'en')}</span>
+              <span class="btn-text" data-lang="es" style="display: none;">{t('about.contact.buttons.youtube', 'es')}</span>
+            </button>
+            <button class="contact-btn btn-pixel-secondary" onclick="openContact('twitch')">
+              <span class="btn-icon">🎮</span>
+              <span class="btn-text" data-lang="en">{t('about.contact.buttons.twitch', 'en')}</span>
+              <span class="btn-text" data-lang="es" style="display: none;">{t('about.contact.buttons.twitch', 'es')}</span>
+            </button>
+            <button class="contact-btn btn-pixel-secondary" onclick="openContact('linkedin')">
+              <span class="btn-icon">💼</span>
+              <span class="btn-text" data-lang="en">{t('about.contact.buttons.linkedin', 'en')}</span>
+              <span class="btn-text" data-lang="es" style="display: none;">{t('about.contact.buttons.linkedin', 'es')}</span>
+            </button>
+            <button class="contact-btn btn-pixel-secondary" onclick="openContact('email')">
+              <span class="btn-icon">📧</span>
+              <span class="btn-text" data-lang="en">{t('about.contact.buttons.email', 'en')}</span>
+              <span class="btn-text" data-lang="es" style="display: none;">{t('about.contact.buttons.email', 'es')}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === TAVERN BACKGROUND === */
+  .tavern-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 3px, transparent 3px),
+      radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.1) 2px, transparent 2px),
+      linear-gradient(45deg, transparent 48%, rgba(139, 69, 19, 0.05) 50%, transparent 52%);
+    background-size: 80px 80px, 120px 120px, 60px 60px;
+    animation: tavernAmbience 20s ease-in-out infinite;
+  }
+
+  @keyframes tavernAmbience {
+    0%, 100% { background-position: 0 0, 0 0, 0 0; }
+    50% { background-position: 40px 40px, -60px -60px, 30px 30px; }
+  }
+
+  .tavern-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(255, 215, 0, 0.3) 6px, transparent 6px),
+      radial-gradient(ellipse at 80% 20%, rgba(255, 140, 0, 0.3) 6px, transparent 6px),
+      radial-gradient(ellipse at 20% 80%, rgba(255, 215, 0, 0.3) 6px, transparent 6px),
+      radial-gradient(ellipse at 80% 80%, rgba(255, 140, 0, 0.3) 6px, transparent 6px);
+    background-size: 100% 100%;
+    animation: lanternFlicker 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes lanternFlicker {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  .floating-smoke {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(ellipse 40px 20px at 30% 90%, rgba(255, 255, 255, 0.1), transparent),
+      radial-gradient(ellipse 30px 15px at 70% 85%, rgba(255, 255, 255, 0.08), transparent);
+    background-size: 200px 200px;
+    animation: smokeRise 15s ease-in-out infinite;
+  }
+
+  @keyframes smokeRise {
+    0% { background-position: 0 100%, 0 100%; }
+    100% { background-position: 0 -20%, 0 -15%; }
+  }
+
+  /* === NPC DIALOG BOX === */
+  .npc-dialog-box {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 46, 0.95) 0%,
+      rgba(22, 33, 62, 0.95) 50%,
+      rgba(16, 33, 78, 0.9) 100%
+    );
+    border: 3px solid var(--primary-genie);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow:
+      0 0 40px rgba(255, 102, 178, 0.4),
+      0 0 80px rgba(255, 102, 178, 0.2),
+      inset 2px 2px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .npc-dialog-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 102, 178, 0.1),
+      transparent
+    );
+    animation: dialogShine 6s ease-in-out infinite;
+  }
+
+  @keyframes dialogShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* === NPC AVATAR CONTAINERS === */
+  .npc-avatar-section,
+  .npc-avatar-container,
+  .npc-avatar {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* === GENTLEMAN AVATAR LARGE === */
+  .gentleman-avatar-large {
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    background:
+      /* Hat */ linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 18.75%,
+        #2f2f2f 18.75%,
+        #2f2f2f 81.25%,
+        transparent 81.25%
+      ),
+      /* Face */
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 25%,
+          #f4a460 25%,
+          #f4a460 68.75%,
+          transparent 68.75%
+        ),
+      /* Mustache */
+        linear-gradient(
+          to right,
+          transparent 0%,
+          transparent 25%,
+          #654321 25%,
+          #654321 75%,
+          transparent 75%
+        );
+    background-size: 120px 24px,120px 175px,120px 15px,120px 120px;
+    background-position: 0 60px, 0 0, 0 75px, 0 0;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 102, 178, 0.4);
+  }
+
+  /* Eyes */
+  .gentleman-avatar-large::before {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 30px;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 45px 0 0 #000;
+    animation: avatarBlink 6s infinite;
+  }
+
+  /* Monocle */
+  .gentleman-avatar-large::after {
+    content: "";
+    position: absolute;
+    top: 38px;
+    right: 22px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px var(--gold);
+  }
+
+  @keyframes avatarBlink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0; }
+  }
+
+  .avatar-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(255, 102, 178, 0.3), transparent 70%);
+    border-radius: 16px;
+    animation: avatarPulse 3s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes avatarPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  /* === SPEECH INDICATOR === */
+  .speech-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 1rem;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-genie);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary-genie);
+  }
+
+  /* === NPC STATS === */
+  .npc-stats {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(22, 33, 62, 0.4) 100%
+    );
+  }
+
+  /* === DIALOG TEXT === */
+  .main-dialog {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(22, 33, 62, 0.6) 100%
+    );
+    border: 2px solid var(--pixel-border);
+  }
+
+  .typing-effect {
+    overflow: hidden;
+    border-right: 2px solid var(--primary-genie);
+    white-space: nowrap;
+    animation: typing 4s steps(60) forwards, cursorBlink 1s step-end infinite;
+  }
+
+  @keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  @keyframes cursorBlink {
+    0%, 50% { border-color: var(--primary-genie); }
+    51%, 100% { border-color: transparent; }
+  }
+
+  .continue-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    pointer-events: auto;
+  }
+
+  .continue-btn:hover {
+    animation: textGlow 0.5s ease-in-out;
+  }
+
+  @keyframes textGlow {
+    0%, 100% { text-shadow: none; }
+    50% { text-shadow: 0 0 10px currentColor; }
+  }
+
+  /* === JOURNEY MILESTONES === */
+  .journey-milestones {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(16, 33, 78, 0.4) 100%
+    );
+  }
+
+  .milestone-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-left: 2px solid var(--secondary-yellow);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .milestone-item:hover {
+    border-left-color: var(--primary-genie);
+    background: rgba(255, 102, 178, 0.1);
+    transform: translateX(8px);
+  }
+
+  .milestone-year {
+    min-width: 60px;
+    padding: 4px 8px;
+    background: rgba(253, 224, 71, 0.2);
+    border: 1px solid var(--secondary-yellow);
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  /* === SKILLS GRID === */
+  .skills-grid {
+    gap: 1rem;
+  }
+
+  .skill-badge {
+    background: linear-gradient(
+      135deg,
+      rgba(22, 33, 62, 0.8) 0%,
+      rgba(16, 33, 78, 0.8) 100%
+    );
+    border: 2px solid var(--pixel-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(106, 79, 255, 0.1),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-4px);
+    border-color: var(--highlight-purple);
+    box-shadow:
+      0 0 20px rgba(106, 79, 255, 0.4),
+      0 8px 32px rgba(106, 79, 255, 0.2);
+  }
+
+  .skill-badge:hover::before {
+    left: 100%;
+  }
+
+  .skill-icon {
+    filter: drop-shadow(0 0 10px currentColor);
+    transition: all 0.3s ease;
+  }
+
+  .skill-badge:hover .skill-icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+
+  /* === CONTACT BUTTONS === */
+  .contact-buttons {
+    gap: 1rem;
+  }
+
+  .contact-btn {
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Monaco, 'Courier New', monospace;
+    font-weight: bold;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 768px) {
+    .npc-dialog-box {
+      padding: 1.5rem;
+    }
+
+    .dialog-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .gentleman-avatar-large {
+      width: 80px;
+      height: 80px;
+      background-size: 80px 20px, 80px 80px, 80px 10px, 80px 80px;
+      background-position: 0 15px, 0 0, 0 50px, 0 0;
+    }
+
+    .gentleman-avatar-large::before {
+      top: 30px;
+      left: 20px;
+      width: 8px;
+      height: 8px;
+      box-shadow: 30px 0 0 #000;
+    }
+
+    .gentleman-avatar-large::after {
+      top: 25px;
+      right: 15px;
+      width: 16px;
+      height: 16px;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .npc-dialog-box {
+      padding: 1rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skill-badge {
+      padding: 1rem;
+    }
+
+    .milestone-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .milestone-year {
+      align-self: flex-start;
+      min-width: auto;
+    }
+  }
+
+  /* === ACCESSIBILITY === */
+  @media (prefers-reduced-motion: reduce) {
+    .tavern-bg,
+    .tavern-lights,
+    .floating-smoke,
+    .npc-dialog-box::before,
+    .avatar-glow,
+    .typing-effect {
+      animation: none;
+    }
+
+    .typing-effect {
+      border-right: none;
+      white-space: normal;
+      width: 100%;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .npc-dialog-box {
+      border-width: 4px;
+    }
+
+    .skill-badge {
+      border-width: 3px;
+    }
+
+    .milestone-item {
+      border-left-width: 4px;
+    }
+  }
+
+  /* Focus indicators */
+  .continue-btn:focus-visible,
+  .contact-btn:focus-visible {
+    outline: 3px solid var(--primary-genie);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+
+  // === DIALOG SYSTEM ===
+  import { t } from '../i18n/index.ts';
+  let currentDialogIndex = 0;
+
+  const dialogTexts = t('about.dialog.lines', 'en');
+
+  function showNextDialog() {
+    currentDialogIndex = (currentDialogIndex + 1) % dialogTexts.length;
+
+    const dialogElement = document.querySelector<HTMLElement>('.typing-effect');
+    const continueButton = document.querySelector<HTMLElement>('.continue-btn');
+
+    if (dialogElement) {
+      // Reset animation
+      dialogElement.style.animation = 'none';
+      dialogElement.textContent = dialogTexts[currentDialogIndex];
+
+      // Trigger reflow and restart animation
+      dialogElement.offsetHeight;
+      dialogElement.style.animation = 'typing 4s steps(60) forwards, cursorBlink 1s step-end infinite';
+    }
+
+    // Show achievement for dialog progression
+    if (window.GentlemanRPG?.showAchievement && currentDialogIndex === 0) {
+      window.GentlemanRPG.showAchievement('💬', 'Dialog Complete!', 'You learned about the mentor');
+    }
+
+    // Update button text
+    if (continueButton) {
+      const buttonText = currentDialogIndex === dialogTexts.length - 1 ? 'Start Over' : 'Continue';
+      continueButton.innerHTML = `<span class="mr-2">▶</span>${buttonText}`;
+    }
+  }
+
+  // === CONTACT SYSTEM ===
+  function openContact(platform: string) {
+    const contacts: Record<string, string> = {
+      youtube: 'https://www.youtube.com/@gentleman-programming',
+      twitch: 'https://www.twitch.tv/gentleman_programming',
+      linkedin: 'https://www.linkedin.com/in/alanbuscaglia/',
+      email: 'mailto:gentleman@ohmybitz.com'
+    };
+
+    const platformNames: Record<string, string> = {
+      youtube: 'YouTube',
+      twitch: 'Twitch',
+      linkedin: 'LinkedIn',
+      email: 'Email'
+    };
+
+    // Show achievement for contact
+    if (window.GentlemanRPG?.showAchievement) {
+      window.GentlemanRPG.showAchievement('🔗', 'Contact Opened!', `Opening ${platformNames[platform]}`);
+    }
+
+    // Update player stats
+    if (window.playerStats) {
+      window.playerStats.xp += 25;
+      if (window.updatePlayerStats) {
+        window.updatePlayerStats();
+      }
+    }
+
+    // Open contact
+    if (contacts[platform]) {
+      window.open(contacts[platform], '_blank');
+    }
+  }
+
+  // === MILESTONE ANIMATIONS ===
+  function initializeMilestones() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const milestones = entry.target.querySelectorAll<HTMLElement>('.milestone-item');
+          milestones.forEach((milestone, index) => {
+            setTimeout(() => {
+              milestone.style.animation = 'slide-in-left 0.6s ease-out forwards';
+            }, index * 200);
+          });
+
+          // Show milestone achievement
+          setTimeout(() => {
+            if (window.GentlemanRPG?.showAchievement) {
+              window.GentlemanRPG.showAchievement('🗺️', 'Journey Revealed!', 'Discovered the mentor\'s path');
+            }
+          }, 1000);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const milestonesSection = document.querySelector('.journey-milestones');
+    if (milestonesSection) {
+      observer.observe(milestonesSection);
+    }
+  }
+
+  // === SKILLS ANIMATIONS ===
+  function initializeSkills() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skills = entry.target.querySelectorAll<HTMLElement>('.skill-badge');
+          skills.forEach((skill, index) => {
+            setTimeout(() => {
+              skill.style.animation = 'scale-in 0.5s ease-out forwards';
+            }, index * 100);
+          });
+
+          // Show skills achievement
+          setTimeout(() => {
+            if (window.GentlemanRPG?.showAchievement) {
+              window.GentlemanRPG.showAchievement('⚔️', 'Skills Unlocked!', 'Mentor abilities revealed');
+            }
+          }, 1200);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+  }
+
+  // === KEYBOARD NAVIGATION ===
+  function initializeKeyboardNavigation() {
+    const contactButtons = document.querySelectorAll<HTMLElement>('.contact-btn');
+    const continueButton = document.querySelector<HTMLElement>('.continue-btn');
+
+    // Contact buttons navigation
+    contactButtons.forEach((button, index) => {
+      button.addEventListener('keydown', function(this: HTMLElement, e: KeyboardEvent) {
+        switch(e.key) {
+          case 'ArrowRight':
+            e.preventDefault();
+            const nextButton = contactButtons[index + 1] || contactButtons[0];
+            nextButton.focus();
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            const prevButton = contactButtons[index - 1] || contactButtons[contactButtons.length - 1];
+            prevButton.focus();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            if (continueButton) continueButton.focus();
+            break;
+        }
+      });
+    });
+
+    // Continue button navigation
+    if (continueButton) {
+      continueButton.addEventListener('keydown', function(this: HTMLElement, e: KeyboardEvent) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          contactButtons[0]?.focus();
+        }
+      });
+    }
+  }
+
+  // === NPC INTERACTIONS ===
+  function initializeNPCInteractions() {
+    // Avatar is now completely non-interactive to preserve animations
+    // Only dialog text and continue buttons should be clickable
+    console.log('🎭 NPC avatar initialized - non-interactive mode');
+  }
+
+  // === EASTER EGGS ===
+  function initializeEasterEggs() {
+    let clickCount = 0;
+    const npcStats = document.querySelector<HTMLElement>('.npc-stats');
+
+    if (npcStats) {
+      npcStats.addEventListener('click', function() {
+        clickCount++;
+
+        if (clickCount === 5) {
+          // Secret achievement
+          if (window.GentlemanRPG?.showAchievement) {
+            window.GentlemanRPG.showAchievement('🎭', 'Secret Discovered!', 'You found the hidden stats easter egg!');
+          }
+
+          // Bonus XP
+          if (window.playerStats) {
+            window.playerStats.xp += 100;
+            if (window.updatePlayerStats) {
+              window.updatePlayerStats();
+            }
+          }
+
+          clickCount = 0; // Reset
+        }
+      });
+    }
+  }
+
+  // === INITIALIZATION ===
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeMilestones();
+    initializeSkills();
+    initializeKeyboardNavigation();
+    initializeNPCInteractions();
+    initializeEasterEggs();
+
+    // Add global functions
+    window.showNextDialog = showNextDialog;
+    window.openContact = openContact;
+
+    // Auto-start first dialog after a delay
+    setTimeout(() => {
+      const dialogElement = document.querySelector<HTMLElement>('.typing-effect');
+      if (dialogElement) {
+        dialogElement.style.animation = 'typing 4s steps(60) forwards, cursorBlink 1s step-end infinite';
+      }
+    }, 1000);
+  });
+
+  // === PERFORMANCE OPTIMIZATION ===
+  // Preload contact links during idle time
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      // Preload external links
+      const contacts = [
+        'https://www.youtube.com/@gentleman-programming',
+        'https://www.twitch.tv/gentleman_programming',
+        'https://www.linkedin.com/in/alanbuscaglia/'
+      ];
+
+      contacts.forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        document.head.appendChild(link as Node);
+      });
+    });
+  }
+</script>

@@ -1,0 +1,86 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.minimap.enabled": true,
+  "editor.rulers": [80, 120],
+  "files.associations": {
+    "*.astro": "astro"
+  },
+  "emmet.includeLanguages": {
+    "astro": "html"
+  },
+  "astro.format.enable": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "css.validate": true,
+  "scss.validate": true,
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "typescript": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class\\s*=\\s*[\"']([^\"']*)[\"']", "[\"']([^\"']*)[\"']"],
+    ["className\\s*=\\s*[\"']([^\"']*)[\"']", "[\"']([^\"']*)[\"']"]
+  ],
+  "html.format.wrapAttributes": "preserve-aligned",
+  "html.format.wrapLineLength": 0,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.astro": true
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.astro": true
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.astro": "${capture}.css, ${capture}.scss, ${capture}.ts, ${capture}.js",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+    "tailwind.config.*": "tailwind.config.*",
+    "astro.config.*": "astro.config.*"
+  },
+  "workbench.colorCustomizations": {
+    "editor.background": "#0a0a0a",
+    "editor.foreground": "#00d4aa",
+    "editorCursor.foreground": "#00ff41",
+    "editorLineNumber.foreground": "#666666",
+    "editorLineNumber.activeForeground": "#00d4aa",
+    "terminal.background": "#1a1a2e",
+    "terminal.foreground": "#00d4aa"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Default Dark+",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "Monaco, Menlo, 'Ubuntu Mono', monospace",
+  "debug.console.fontSize": 14,
+  "editor.fontFamily": "Monaco, Menlo, 'Ubuntu Mono', monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.6,
+  "editor.tokenColorCustomizations": {
+    "comments": "#666666",
+    "keywords": "#ff6b6b",
+    "strings": "#4ecdc4",
+    "numbers": "#ffe66d",
+    "types": "#a8e6cf"
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "extensions.ignoreRecommendations": false,
+  "peacock.color": "#00d4aa",
+  "peacock.affectActivityBar": true,
+  "peacock.affectStatusBar": true,
+  "peacock.affectTitleBar": false
+}

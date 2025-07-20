@@ -1,0 +1,978 @@
+---
+// Final Boss CTA - Nivel 7: Final Boss CTA con temática de batalla épica
+import { t } from '../i18n/index.ts';
+---
+
+<section id="cta-final" class="min-h-screen py-20 relative overflow-hidden">
+  <!-- Boss Arena Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="boss-arena-bg"></div>
+    <div class="lightning-effects"></div>
+    <div class="energy-particles"></div>
+    <div class="boss-aura"></div>
+  </div>
+
+  <!-- Section Container -->
+  <div class="container mx-auto px-4 relative z-10">
+
+    <!-- Boss Entrance Animation -->
+    <div class="boss-entrance animate-on-scroll">
+      <div class="entrance-warning text-center mb-8">
+        <div class="warning-text text-pixel-red text-pixel-sm font-bold animate-pulse">
+          {t('finalBoss.warning', "en")}
+        </div>
+      </div>
+    </div>
+
+    <!-- Boss Health Bar -->
+    <div class="boss-health-container animate-on-scroll">
+      <div class="boss-nameplate">
+        <div class="boss-title text-pixel-lg font-bold text-pixel-red">
+          FINAL BOSS
+        </div>
+        <div class="boss-name text-pixel-2xl font-bold text-pixel-white">
+          {t('finalBoss.bossName', "en")}
+        </div>
+        <div class="boss-level text-pixel-sm text-pixel-gray">
+          {t('finalBoss.bossLevel', "en")}
+        </div>
+      </div>
+
+      <div class="health-bar-container">
+        <div class="health-bar">
+          <div class="health-fill" id="boss-health"></div>
+          <div class="health-text">
+            <span class="current-hp">100000</span> / <span class="max-hp">100000</span> HP
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boss Battle Arena -->
+    <div class="battle-arena">
+
+      <!-- Boss Sprite -->
+      <div class="boss-container animate-on-scroll">
+        <div class="boss-sprite">
+          <div class="boss-body"></div>
+          <div class="boss-eyes"></div>
+          <div class="boss-aura-ring"></div>
+        </div>
+        <div class="boss-shadow"></div>
+      </div>
+
+      <!-- Battle Dialog Box -->
+      <div class="battle-dialog-box animate-on-scroll">
+        <div class="dialog-header">
+          <div class="dialog-speaker">FINAL BOSS</div>
+          <div class="dialog-type">CHALLENGE</div>
+        </div>
+
+        <div class="dialog-text">
+          <div class="text-line" data-lang="en">{t('finalBoss.dialog.0', 'en')}</div>
+          <div class="text-line" data-lang="en">{t('finalBoss.dialog.1', 'en')}</div>
+          <div class="text-line" data-lang="en">{t('finalBoss.dialog.2', 'en')}</div>
+          <div class="text-line" data-lang="en">{t('finalBoss.dialog.3', 'en')}</div>
+          <div class="text-line" data-lang="es" style="display: none;">{t('finalBoss.dialog.0', 'es')}</div>
+          <div class="text-line" data-lang="es" style="display: none;">{t('finalBoss.dialog.1', 'es')}</div>
+          <div class="text-line" data-lang="es" style="display: none;">{t('finalBoss.dialog.2', 'es')}</div>
+          <div class="text-line" data-lang="es" style="display: none;">{t('finalBoss.dialog.3', 'es')}</div>
+        </div>
+
+          <div class="dialog-response">
+            <div class="response-text">
+              <span data-lang="en">{t('finalBoss.response', 'en')}</span>
+              <span data-lang="es" style="display: none;">{t('finalBoss.response', 'es')}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Action Panel -->
+      <div class="hero-action-panel animate-on-scroll">
+        <div class="action-header">
+          <div class="hero-name text-pixel-lg font-bold text-pixel-cyan">
+            {t('finalBoss.heroName', "en")}
+          </div>
+          <div class="hero-level text-pixel-sm text-pixel-gray">
+            {t('finalBoss.heroLevel', "en")}
+          </div>
+        </div>
+
+        <!-- Special Attack: Email Contact -->
+        <div class="special-attack">
+          <div class="attack-name text-pixel-xl font-bold text-gold mb-4">
+            {t('finalBoss.attack.title', "en")}
+          </div>
+
+          <div class="attack-description text-pixel-base text-pixel-gray mb-6">
+            {t('finalBoss.attack.description', "en")}
+          </div>
+
+          <!-- Email Input Battle Style -->
+          <div class="email-battle-input mb-6">
+            <div class="input-label text-pixel-sm text-pixel-cyan mb-2">
+              {t('finalBoss.attack.inputLabel', "en")}
+            </div>
+            <div class="input-container">
+              <input
+                type="email"
+                id="hero-email"
+                placeholder="tu-email@ejemplo.com"
+                class="battle-input"
+                required
+              />
+              <div class="input-glow"></div>
+            </div>
+          </div>
+
+          <!-- Attack Button -->
+          <button
+            class="special-attack-btn"
+            id="launch-attack"
+            onclick="launchFinalAttack()"
+          >
+            <div class="btn-content">
+              <div class="btn-icon">⚔️</div>
+              <div class="btn-text">{t('finalBoss.attack.button', "en")}</div>
+              <div class="btn-subtitle">{t('finalBoss.attack.subtitle', "en")}</div>
+            </div>
+            <div class="btn-energy-waves"></div>
+            <div class="btn-charging-effect"></div>
+          </button>
+
+          <!-- Alternative Contact Methods -->
+          <div class="alt-attacks mt-6">
+            <div class="alt-header text-pixel-sm text-pixel-gray mb-3">
+              {t('finalBoss.attack.alternatives', "en")}
+            </div>
+            <div class="alt-buttons">
+              <a
+                href="mailto:gentleman@ohmybitz.com"
+                class="alt-attack-btn"
+                data-attack="email"
+              >
+                <span class="alt-icon">📧</span>
+                <span class="alt-text" data-lang="en">{t('finalBoss.attack.email', 'en')}</span>
+                <span class="alt-text" data-lang="es" style="display: none;">{t('finalBoss.attack.email', 'es')}</span>
+              </a>
+              <a
+                href="https://wa.me/1234567890"
+                class="alt-attack-btn"
+                data-attack="whatsapp"
+                target="_blank"
+              >
+                <span class="alt-icon">💬</span>
+                <span class="alt-text" data-lang="en">{t('finalBoss.attack.whatsapp', 'en')}</span>
+                <span class="alt-text" data-lang="es" style="display: none;">{t('finalBoss.attack.whatsapp', 'es')}</span>
+              </a>
+              <a
+                href="https://cal.com/gentleman-programming"
+                class="alt-attack-btn"
+                data-attack="calendar"
+                target="_blank"
+              >
+                <span class="alt-icon">📅</span>
+                <span class="alt-text" data-lang="en">{t('finalBoss.attack.calendar', 'en')}</span>
+                <span class="alt-text" data-lang="es" style="display: none;">{t('finalBoss.attack.calendar', 'es')}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Victory Celebration (Hidden initially) -->
+    <div class="victory-celebration" id="victory-screen" style="display: none;">
+      <div class="victory-content">
+        <div class="victory-title text-pixel-3xl font-bold text-gold mb-4">
+          {t('finalBoss.victory.title', "en")}
+        </div>
+        <div class="victory-subtitle text-pixel-lg text-pixel-green mb-6">
+          {t('finalBoss.victory.subtitle', "en")}
+        </div>
+        <div class="victory-message text-pixel-base text-pixel-gray">
+          {t('finalBoss.victory.message', "en")}
+        </div>
+        <div class="victory-fireworks">
+          <div class="firework"></div>
+          <div class="firework"></div>
+          <div class="firework"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Boss Arena Background */
+  .boss-arena-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.2) 0%, transparent 70%),
+      radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(25, 25, 25, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+    animation: arenaAtmosphere 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes arenaAtmosphere {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.02); }
+  }
+
+  /* Lightning Effects */
+  .lightning-effects {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+      linear-gradient(45deg, transparent 49%, rgba(255, 255, 0, 0.6) 50%, transparent 51%);
+    background-size: 200px 100vh, 300px 100vh;
+    opacity: 0;
+    animation: lightning 4s ease-in-out infinite;
+  }
+
+  @keyframes lightning {
+    0%, 90%, 100% { opacity: 0; }
+    5%, 15% { opacity: 1; }
+  }
+
+  /* Energy Particles */
+  .energy-particles {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(255, 0, 0, 0.6) 2px, transparent 2px),
+      radial-gradient(circle at 75% 25%, rgba(255, 255, 0, 0.6) 1px, transparent 1px),
+      radial-gradient(circle at 25% 75%, rgba(138, 43, 226, 0.6) 3px, transparent 3px),
+      radial-gradient(circle at 75% 75%, rgba(255, 69, 0, 0.6) 2px, transparent 2px);
+    background-size: 100px 100px, 150px 150px, 120px 120px, 180px 180px;
+    animation: particlesFloat 6s linear infinite;
+  }
+
+  @keyframes particlesFloat {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -50px) rotate(360deg); }
+  }
+
+  /* Boss Aura */
+  .boss-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: auraThrobbing 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes auraThrobbing {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+  }
+
+  /* Boss Health Bar */
+  .boss-health-container {
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(139, 0, 0, 0.8) 100%);
+    border: 3px solid var(--hp-red);
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+  }
+
+  .boss-nameplate {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .boss-title {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+    animation: titleFlicker 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes titleFlicker {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8), 0 0 10px var(--hp-red); }
+  }
+
+  .health-bar-container {
+    position: relative;
+  }
+
+  .health-bar {
+    width: 100%;
+    height: 20px;
+    background: var(--pixel-dark);
+    border: 2px solid var(--hp-red);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .health-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--hp-red) 0%, #ff6b6b 50%, var(--hp-red) 100%);
+    transition: width 3s ease-out;
+    position: relative;
+  }
+
+  .health-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent, rgba(255, 255, 255, 0.3));
+    animation: healthPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes healthPulse {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  }
+
+  /* Battle Arena */
+  .battle-arena {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  /* Boss Sprite */
+  .boss-container {
+    text-align: center;
+    position: relative;
+  }
+
+  .boss-sprite {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+    animation: bossFloat 3s ease-in-out infinite;
+  }
+
+  .boss-body {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 50% 30%, #8b0000 20%, transparent 40%),
+      radial-gradient(circle at 30% 50%, #ff0000 15%, transparent 35%),
+      radial-gradient(circle at 70% 50%, #ff0000 15%, transparent 35%),
+      radial-gradient(circle at 50% 70%, #4b0000 25%, transparent 45%),
+      linear-gradient(45deg, rgba(139, 0, 0, 0.8) 0%, rgba(75, 0, 130, 0.6) 100%);
+    border-radius: 50%;
+    border: 3px solid var(--hp-red);
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
+  }
+
+  .boss-eyes {
+    position: absolute;
+    top: 35%;
+    left: 30%;
+    width: 15px;
+    height: 15px;
+    background: #ffff00;
+    border-radius: 50%;
+    box-shadow:
+      25px 0 0 #ffff00,
+      0 0 10px #ffff00,
+      25px 0 10px #ffff00;
+    animation: eyeGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes eyeGlow {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; box-shadow:
+      25px 0 0 #ffff00,
+      0 0 20px #ffff00,
+      25px 0 20px #ffff00; }
+  }
+
+  .boss-aura-ring {
+    position: absolute;
+    inset: -20px;
+    border: 2px solid var(--hp-red);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: auraRing 4s linear infinite;
+  }
+
+  @keyframes auraRing {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.6; }
+    100% { transform: rotate(360deg) scale(1.1); opacity: 0.3; }
+  }
+
+  @keyframes bossFloat {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+  }
+
+  .boss-shadow {
+    width: 150px;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
+    margin: 2rem auto 0;
+    animation: shadowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes shadowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(0.8); opacity: 0.3; }
+  }
+
+  /* Battle Dialog Box */
+  .battle-dialog-box {
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(75, 0, 130, 0.8) 100%);
+    border: 3px solid var(--hp-red);
+    padding: 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+  }
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--hp-red);
+  }
+
+  .dialog-speaker {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--hp-red);
+  }
+
+  .dialog-type {
+    font-size: 0.8rem;
+    color: var(--pixel-gray);
+    background: rgba(220, 38, 38, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .dialog-text .text-line {
+    margin-bottom: 0.5rem;
+    color: var(--pixel-white);
+    animation: textAppear 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .dialog-text .text-line:nth-child(1) { animation-delay: 0.5s; }
+  .dialog-text .text-line:nth-child(2) { animation-delay: 1s; }
+  .dialog-text .text-line:nth-child(3) { animation-delay: 1.5s; }
+  .dialog-text .text-line:nth-child(4) { animation-delay: 2s; }
+
+  .dialog-response {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 212, 170, 0.3);
+    font-style: italic;
+  }
+
+  /* Hero Action Panel */
+  .hero-action-panel {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+    border: 3px solid var(--pixel-cyan);
+    padding: 3rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 212, 170, 0.3);
+    text-align: center;
+  }
+
+  .action-header {
+    margin-bottom: 2rem;
+  }
+
+  .special-attack {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Email Battle Input */
+  .email-battle-input {
+    position: relative;
+  }
+
+  .input-container {
+    position: relative;
+  }
+
+  .battle-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    background: rgba(22, 33, 62, 0.8);
+    border: 2px solid var(--pixel-border);
+    color: var(--pixel-white);
+    border-radius: 8px;
+    font-family: 'Monaco', monospace;
+    transition: all 0.3s ease;
+  }
+
+  .battle-input:focus {
+    outline: none;
+    border-color: var(--pixel-cyan);
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+  }
+
+  .input-glow {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--pixel-cyan), var(--pixel-green), var(--pixel-cyan));
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .battle-input:focus + .input-glow {
+    opacity: 0.3;
+    animation: inputGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes inputGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Special Attack Button */
+  .special-attack-btn {
+    background: linear-gradient(135deg, var(--secondary-yellow) 0%, var(--primary-genie) 100%);
+    border: 4px solid var(--bg-dark);
+    color: var(--bg-dark);
+    padding: 24px 48px;
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s ease;
+    width: 100%;
+    max-width: 400px;
+    font-family: Monaco, 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow:
+      6px 6px 0px var(--text-secondary),
+      0 0 0 1px var(--bg-dark);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .special-attack-btn:hover {
+    background: linear-gradient(135deg, var(--primary-genie) 0%, var(--secondary-yellow) 100%);
+    transform: translate(-3px, -3px);
+    box-shadow:
+      9px 9px 0px var(--text-secondary),
+      0 0 0 1px var(--bg-dark),
+      0 0 30px rgba(255, 102, 178, 0.6);
+  }
+
+  .btn-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.4));
+  }
+
+  .btn-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--bg-dark);
+    margin-bottom: 0.25rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  }
+
+  .btn-subtitle {
+    font-size: 1rem;
+    color: var(--bg-dark);
+    opacity: 0.8;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+  }
+
+  .btn-energy-waves {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    animation: energyWaves 3s ease-in-out infinite;
+  }
+
+  @keyframes energyWaves {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .btn-charging-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .special-attack-btn:hover .btn-charging-effect {
+    left: 100%;
+  }
+
+  /* Alternative Attack Buttons */
+  .alt-attacks {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .alt-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .alt-attack-btn {
+    background: rgba(22, 33, 62, 0.8);
+    border: 2px solid var(--pixel-border);
+    padding: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--pixel-cyan);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .alt-attack-btn:hover {
+    border-color: var(--pixel-cyan);
+    background: rgba(0, 212, 170, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .alt-icon {
+    font-size: 1.5rem;
+  }
+
+  .alt-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* Victory Celebration */
+  .victory-celebration {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .victory-content {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(255, 215, 0, 0.2) 100%);
+    border: 3px solid var(--gold);
+    padding: 3rem;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .victory-fireworks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: fireworkExplode 2s ease-out infinite;
+  }
+
+  .firework:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .firework:nth-child(2) {
+    top: 30%;
+    right: 20%;
+    animation-delay: 0.5s;
+  }
+
+  .firework:nth-child(3) {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 1s;
+  }
+
+  @keyframes fireworkExplode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(15); opacity: 0.8; }
+    100% { transform: scale(30); opacity: 0; }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .battle-arena {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .boss-sprite {
+      width: 150px;
+      height: 150px;
+    }
+
+    .special-attack-btn {
+      padding: 20px 32px;
+      border-width: 3px;
+      box-shadow:
+        4px 4px 0px var(--text-secondary),
+        0 0 0 1px var(--bg-dark);
+    }
+
+    .special-attack-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow:
+        6px 6px 0px var(--text-secondary),
+        0 0 0 1px var(--bg-dark),
+        0 0 20px rgba(255, 102, 178, 0.4);
+    }
+
+    .alt-buttons {
+      grid-template-columns: 1fr;
+    }
+
+    .victory-content {
+      margin: 1rem;
+      padding: 2rem;
+    }
+  }
+</style>
+
+<script>
+  let bossDefeated = false;
+
+  function launchFinalAttack() {
+    const emailInput = document.getElementById('hero-email') as HTMLInputElement;
+    if (!emailInput) return;
+
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      alert('⚠️ ¡Debes ingresar tu email para lanzar el ataque!');
+      emailInput.focus();
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      alert('⚠️ ¡Email no válido! Revisa el formato.');
+      emailInput.focus();
+      return;
+    }
+
+    // Start boss defeat sequence
+    defeatBoss(email);
+  }
+
+  function isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function defeatBoss(email: string) {
+    if (bossDefeated) return;
+    bossDefeated = true;
+
+    const attackBtn = document.getElementById('launch-attack') as HTMLButtonElement;
+    const bossHealth = document.getElementById('boss-health') as HTMLElement;
+    const victoryScreen = document.getElementById('victory-screen') as HTMLElement;
+
+    if (!attackBtn || !bossHealth || !victoryScreen) return;
+
+    // Disable button
+    attackBtn.disabled = true;
+    attackBtn.style.opacity = '0.5';
+    attackBtn.innerHTML = '<div class="btn-content"><div class="btn-text">ATACANDO...</div></div>';
+
+    // Screen shake effect
+    document.body.style.animation = 'pixelShake 0.5s ease-in-out';
+
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 500);
+
+    // Dramatic health drain
+    let currentHealth = 100;
+    const healthDrain = setInterval(() => {
+      currentHealth -= Math.random() * 15 + 5;
+      if (currentHealth <= 0) {
+        currentHealth = 0;
+        clearInterval(healthDrain);
+
+        // Boss defeated!
+        setTimeout(() => {
+          showVictory();
+          sendEmail(email);
+        }, 1000);
+      }
+
+      if (bossHealth) {
+        bossHealth.style.width = currentHealth + '%';
+      }
+
+      // Update health text
+      const healthText = document.querySelector('.current-hp') as HTMLElement;
+      if (healthText) {
+        healthText.textContent = String(Math.floor(currentHealth * 1000));
+      }
+
+    }, 200);
+
+    // Add dramatic effects
+    setTimeout(() => {
+      document.body.style.background = 'radial-gradient(circle, rgba(255,0,0,0.3) 0%, transparent 70%)';
+    }, 500);
+  }
+
+  function showVictory() {
+    const victoryScreen = document.getElementById('victory-screen') as HTMLElement;
+    if (!victoryScreen) return;
+
+    victoryScreen.style.display = 'flex';
+
+    // Play victory sound (simulated)
+    console.log('🎵 Victory fanfare plays!');
+
+    // Hide victory screen after 5 seconds
+    setTimeout(() => {
+      victoryScreen.style.opacity = '0';
+      setTimeout(() => {
+        victoryScreen.style.display = 'none';
+      }, 500);
+    }, 5000);
+  }
+
+  function sendEmail(email: string) {
+    // In a real implementation, this would send the email to your backend
+    const mailtoLink = `mailto:gentleman@ohmybitz.com?subject=Quest Request from ${email}&body=Hola Gentleman,%0D%0A%0D%0AHe completado el desafío final y me gustaría iniciar mi quest de mentoría.%0D%0A%0D%0AMi email: ${email}%0D%0A%0D%0A¡Estoy listo para subir de nivel!`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    console.log(`📧 Email sent to mentor with address: ${email}`);
+  }
+
+  // Initialize boss health animation
+  document.addEventListener('DOMContentLoaded', function() {
+    const bossHealthObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Start boss intro sequence
+          setTimeout(() => {
+            const bossHealth = document.getElementById('boss-health') as HTMLElement;
+            if (bossHealth) {
+              bossHealth.style.width = '100%';
+            }
+          }, 1000);
+
+          bossHealthObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const bossContainer = document.querySelector('.boss-health-container');
+    if (bossContainer) {
+      bossHealthObserver.observe(bossContainer);
+    }
+
+    // Add sound effects to alternative buttons
+    document.querySelectorAll<HTMLElement>('.alt-attack-btn').forEach(btn => {
+      btn.addEventListener('click', function(this: HTMLElement) {
+        const attackType = this.dataset.attack;
+        console.log(`🔊 Alternative attack sound: ${attackType}`);
+      });
+    });
+
+    // Email input focus effects
+    const emailInput = document.getElementById('hero-email') as HTMLInputElement;
+    if (emailInput) {
+      emailInput.addEventListener('focus', function() {
+        console.log('🔊 Input focus sound');
+      });
+
+      // Enter key support for email input
+      emailInput.addEventListener('keydown', function(e: KeyboardEvent) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          launchFinalAttack();
+        }
+      });
+    }
+
+    // Boss taunt messages (random)
+    const taunts = [
+      "¡Ja! ¿Otro developer más?",
+      "Tus bugs me alimentan...",
+      "¡No podrás vencerme!",
+      "Soy el error 404 de tus pesadillas",
+      "¡Tu código es terrible!"
+    ];
+
+    // Random boss taunt every 10 seconds
+    setInterval(() => {
+      const bossContainer = document.querySelector('.boss-container');
+      if (!bossDefeated && bossContainer && bossContainer.getBoundingClientRect().top < window.innerHeight) {
+        const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
+        console.log(`💀 Boss taunt: ${randomTaunt}`);
+
+        // Could show floating text here
+      }
+    }, 10000);
+  });
+
+  // Global function for alternative contact methods
+  window.launchFinalAttack = launchFinalAttack;
+</script>
